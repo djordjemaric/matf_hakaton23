@@ -6,11 +6,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 
@@ -124,8 +126,17 @@ public class HelloApplication extends Application {
         top3.getChildren().addAll(dalje3);
         root3.getChildren().addAll(top3);
 
-        TextArea textAreaT = new TextArea("kasgfkashfkahskfhasku\nakshfkashf\naksfhb");
-        TextArea textAreaV = new TextArea("kasgfaahskfhasku\naksdfhdfhfffkashf\nakssdfsssssfhb");
+        Text textAreaT = new Text("Osnovni upit se sastoji od naredbi SELECT i FROM\n" +
+                "SELECT naredbom oznacavamo koje atribute zelimo da izdvojimo\n" +
+                "FROM naredbom oznacavamo iz koje tabele zelimo da izdvojimo informacije\n" +
+                "Ukoliko zelimo da izdvojimo sve atribute, mozemo iskoristiti operator *\n" +
+                "\n" +
+                "Hajde da izvrsimo nas prvi upit. Zelimo da izdvojimo sve atribute o svim ucenicima u nasoj skoli.\n" +
+                "\n" +
+                "Upit izgleda ovako: SELECT * FROM skola; \n Red je na tebe da probas! Klikni na dugme!");
+
+        //prikazi sliku
+        Text textAreaV = new Text("Izdvoji sve atribute o svim ucenicima u skoli. \n\nKlikni na probaj kada si spreman da proveris svoje resenje.");
         TextField textFieldV = new TextField();
         Button btnT = new Button("Probaj");
         Button btnV = new Button("Prosledi resenje");
@@ -152,6 +163,7 @@ public class HelloApplication extends Application {
 
         nivo1.setOnAction(e -> {
             if(!activated[0]){
+
                 root1.getChildren().addAll(vbT);
                 activated[0] = true;
             }else{
@@ -161,6 +173,12 @@ public class HelloApplication extends Application {
         });
         nivo2.setOnAction(e -> {
             if(!activated[1]){
+                textAreaT.setText("Ukoliko zelimo samo odredjene informacije o ucenicima, to mozemo uraditi\n u okviru SELECT naredbe." +
+                        "Zelimo da izdvojimo samo imena za sve ucenike. \nTo mozemo uraditi sledecim upitom:  SELECT ime FROM skola;\n" +
+                        "Rezultat izvrsavanja je obojen plavom bojom\n" +
+                        "\n" +
+                        "Red je na tebe da probas! Klikni na dugme! ->");
+                textAreaV.setText("Izdvoji prezimena za sve ucenike u skoli.\nKlikni na probaj kada si spreman da proveris svoje resenje.");
                 root1.getChildren().addAll(vbT);
                 activated[1] = true;
             }else{
@@ -170,6 +188,13 @@ public class HelloApplication extends Application {
         });
         nivo3.setOnAction(e -> {
             if(!activated[2]){
+                textAreaT.setText("Mozemo odabrati proizvoljan broj atributa iz tabele.\nSada zelimo da izdvojimo ime i prezime za sve ucenike.\n" +
+                        "To mozemo uraditi sledecim upitom: SELECT ime, prezime FROM skola\n" +
+                        "\n" +
+                        "Rezultat izvrsavanja je obojen plavom bojom\n" +
+                        "\n" +
+                        "Red je na tebe da probas! Klikni na dugme!");
+                textAreaV.setText("Izdvoji ime, adresu i broj telefona za svakog ucenika.\nKlikni na probaj kada si spreman da proveris svoje resenje.");
                 root1.getChildren().addAll(vbT);
                 activated[2] = true;
             }else{
@@ -180,6 +205,17 @@ public class HelloApplication extends Application {
 
         nivo4.setOnAction(e -> {
             if(!activated[3]){
+                textAreaT.setText("WHERE naredbu koristimo kako bismo izdvojili samo one redove koji ispunjavaju navedeni uslov.\n" +
+                        "Mozemo koristiti operatore =, >, < <>\n" +
+                        "\n" +
+                        "Zelimo da izdvojimo sve atribute samo o onin ucenicima koji su rodjeni nakon 2001 godine.\n" +
+                        "\n" +
+                        "SELECT * FROM skola WHERE godina > 2001;\n" +
+                        "\n" +
+                        "Rezultat izvrsavanja je obojen plavom bojom\n" +
+                        "\n" +
+                        "Red je na tebe da probas! Klikni na dugme!");
+                textAreaV.setText("Izdvoji sve informacije o ucenicima rodjenim pre 2003 godine.\nKlikni na probaj kada si spreman da proveris svoje resenje.");
                 root2.getChildren().addAll(vbT);
                 activated[3] = true;
             }else{
@@ -189,6 +225,17 @@ public class HelloApplication extends Application {
         });
         nivo5.setOnAction(e -> {
             if(!activated[4]){
+                textAreaT.setText("Ukoliko su nam potrebni stroziji kriterijumi, uslove mozemo spajati naredbama AND i OR.\n\n" +
+                        "Ako upotrebimo AND, da bi red bio izdvojen neophodno je da oba uslova budu ispunjena.\n\n" +
+                        "U slucaju da se koristi OR, dovoljno je da bar jedan bude ispunjen kako bi red bio izdvojen.\n\n" +
+                        "Pogledajmo na primeru: Zelimo da izdvojimo sve decake rodjene 2001. godine\n" +
+                        "\n" +
+                        "SELECT * FROM skola WHERE godina = 2001 AND pol = M\n" +
+                        "\n" +
+                        "Rezultat izvrsavanja je obojen plavom bojom\n" +
+                        "\n" +
+                        "Red je na tebe da probas! Klikni na dugme!");
+                textAreaV.setText("Izdvoji sve ucenike koji su rodjeni 2003. godine ili su devojcice\nKlikni na probaj kada si spreman da proveris svoje resenje.");
                 root2.getChildren().addAll(vbT);
                 activated[4] = true;
             }else{
@@ -198,6 +245,15 @@ public class HelloApplication extends Application {
         });
         nivo6.setOnAction(e -> {
             if(!activated[5]){
+                textAreaT.setText("Ukoliko imamo vise dozvoljenih opcija, umesto da pisemo nekoliko OR naredbi,\n mozemo iskoristiti IN naredbu.\n" +
+                        "Hajde da izdvojimo sve ucenike koji se zovu Pera, Mika ili Jelena\n" +
+                        "\n" +
+                        "SELECT *  FROM skola WHERE ime IN ('Pera', 'Mika', 'Jelena')\n" +
+                        "\n" +
+                        "Rezultat izvrsavanja je obojen plavom bojom\n" +
+                        "\n" +
+                        "Red je na tebe da probas! Klikni na dugme!");
+                textAreaV.setText("Izdvoji sve ucenike koji se prezivaju Mikic, Zikic, ili Janic.\nKlikni na probaj kada si spreman da proveris svoje resenje.");
                 root2.getChildren().addAll(vbT);
                 activated[5] = true;
             }else{
@@ -208,6 +264,18 @@ public class HelloApplication extends Application {
 
         nivo7.setOnAction(e -> {
             if(!activated[6]){
+                textAreaT.setText("Nase rezultate mozemo uredjivati po razlicitim kriterijumima naredbom ORDER BY.\n" +
+                        "Ukoliko zelimo da budu uredjeni po kriterijumu rastuce, koristimo kljucnu rec ASC (ascending). \n" +
+                        "Ako zelimo opadajuce, koristimo DESC (descending)\n" +
+                        "\n" +
+                        "Hajde da izdvojimo sve ucenike, ali da ih uredimo azbucno po imenu.\n" +
+                        "\n" +
+                        "SELECT * FROM skola ORDER BY ime ASC;\n" +
+                        "\n" +
+                        "Rezultat izvrsavanja je obojen plavom bojom\n" +
+                        "\n" +
+                        "Red je na tebe da probas! Klikni na dugme!");
+                textAreaV.setText("Izdvoji sve ucenike a rezultat uredi po godini opadajuce.\nKlikni na probaj kada si spreman da proveris svoje resenje.");
                 root3.getChildren().addAll(vbT);
                 activated[6] = true;
             }else{
@@ -217,6 +285,24 @@ public class HelloApplication extends Application {
         });
         nivo8.setOnAction(e -> {
             if(!activated[7]){
+                textAreaT.setText("Nad upitima mozemo izvrsavati i skupovne operacije \n" +
+                        "UNION - u rezultatu ce se naci svi redovi iz oba upita\n" +
+                        "INTERSECT - u rezultatu ce se naci samo oni redovi koji se nalaze u oba upita\n" +
+                        "EXCEPT - u rezultatu ce se naci redovi koji se nalaze u prvom upitu ali se NE nalaze u drugom\n" +
+                        "\n" +
+                        "Neophodno je da oba upita izdvajaju iste atribute kako bi skupovna operacija bila izvrsena.\n" +
+                        "\n" +
+                        "Hajde da izdvojimo sve ucenike koji su rodjeni 2001. godine i koji su decaci.\n" +
+                        "\n" +
+                        "SELECT * FROM skola WHERE godina = 2001\n" +
+                        "UNION\n" +
+                        "SELECT * FROM skola WHERE pol = M\n" +
+                        "\n" +
+                        "Rezultat izvrsavanja je obojen plavom bojom\n" +
+                        "\n" +
+                        "Red je na tebe da probas! Klikni na dugme!");
+                textAreaV.setText("Koristeci skupovne operatore, izdvoji sve devojcice sem onih koje su rodjene 2003.\n" +
+                        "Hint: koristi operator EXCEPT");
                 root3.getChildren().addAll(vbT);
                 activated[7] = true;
             }else{
@@ -226,6 +312,12 @@ public class HelloApplication extends Application {
         });
         nivo9.setOnAction(e -> {
             if(!activated[8]){
+                textAreaT.setText("Vreme je da proverimo sta si naucio! \n" +
+                        "Na sledecem slajdu se nalazi zadatak gde ces moci da proveris sve oblasti koje smo danas obradili");
+                textAreaV.setText("Napisi dva upita. \n" +
+                        "Prvi - Izdvoji ime, prezime i adresu svih ucenika koji se prezivaju Mikic ili su rodjeni 2000. ili 2005. godine. Hint: koristi IN operator\n" +
+                        "Drugi - Izdvoji ime, prezime i adresu svih decaka koji nisu rodjeni 2001.\n" +
+                        "Napravi presek izmedju ova dva upita.\n");
                 root3.getChildren().addAll(vbT);
                 activated[8] = true;
             }else{
@@ -336,7 +428,12 @@ public class HelloApplication extends Application {
 
         VBox rootB = new VBox();
         VBox rootE = new VBox();
-        TextArea taB = new TextArea("Dobrodosli");
+        Label taB = new Label("SQL je upitni jezik koji se koristi za izvrsavanje upita nad relacionim bazama podataka. \n" +
+                "\n" +
+                "Podaci se u bazama podataka cuvaju u tabelama. \n" +
+                "Tabela se sastoji od kolona koje oznacavaju osobine/atribute. Svaki red u tabeli cuva vrednosti tih atributa.\n" +
+                "\n" +
+                "Tabela koju cemo korisiti u nastavku opisuje ucenike u jednoj skoli i izgleda ovako:");
         TextArea taE = new TextArea("Uspesno ste zavrsili sve lekcije");
         Button btnB = new Button("Zapocni");
         Button btnE = new Button("Zavrsi");

@@ -315,7 +315,7 @@ public class HelloApplication extends Application {
                 textAreaT.setText("Vreme je da proverimo sta si naucio! \n" +
                         "Na sledecem slajdu se nalazi zadatak gde ces moci da proveris sve oblasti koje smo danas obradili");
                 textAreaV.setText("Napisi dva upita. \n" +
-                        "Prvi - Izdvoji ime, prezime i adresu svih ucenika koji se prezivaju Mikic ili su rodjeni 2000. ili 2005. godine. Hint: koristi IN operator\n" +
+                        "Prvi - Izdvoji ime, prezime i adresu svih ucenika koji se prezivaju Mikic ili su \nrodjeni 2000. ili 2005. godine. Hint: koristi IN operator\n" +
                         "Drugi - Izdvoji ime, prezime i adresu svih decaka koji nisu rodjeni 2001.\n" +
                         "Napravi presek izmedju ova dva upita.\n");
                 root3.getChildren().addAll(vbT);
@@ -431,10 +431,12 @@ public class HelloApplication extends Application {
         Label taB = new Label("SQL je upitni jezik koji se koristi za izvrsavanje upita nad relacionim bazama podataka. \n" +
                 "\n" +
                 "Podaci se u bazama podataka cuvaju u tabelama. \n" +
-                "Tabela se sastoji od kolona koje oznacavaju osobine/atribute. Svaki red u tabeli cuva vrednosti tih atributa.\n" +
+                "Tabela se sastoji od kolona koje oznacavaju osobine/atribute.\nSvaki red u tabeli cuva vrednosti tih atributa.\n" +
                 "\n" +
                 "Tabela koju cemo korisiti u nastavku opisuje ucenike u jednoj skoli i izgleda ovako:");
-        TextArea taE = new TextArea("Uspesno ste zavrsili sve lekcije");
+        //taB.setStyle("-fx-text-alignment: center;");
+        Text taE = new Text("Uspesno ste zavrsili sve lekcije");
+        //taE.setStyle("-fx-text-alignment: center;");
         Button btnB = new Button("Zapocni");
         Button btnE = new Button("Zavrsi");
         rootB.getChildren().addAll(taB,btnB);

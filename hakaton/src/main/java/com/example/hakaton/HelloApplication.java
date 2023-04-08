@@ -16,6 +16,7 @@ import java.io.IOException;
 
 public class HelloApplication extends Application {
     Boolean[] activated = {false,false,false,false,false,false,false,false,false};
+    Boolean mozesNivo = true;
     @Override
     public void start(Stage stage) throws IOException {
         HBox root1 = new HBox();
@@ -74,6 +75,8 @@ public class HelloApplication extends Application {
         VBox vbV = new VBox();
         vbT.getChildren().addAll(textAreaT,btnT);
         vbV.getChildren().addAll(textAreaV,textFieldV,btnV);
+
+
 
         nivo1.setOnAction(e -> {
             if(!activated[0]){
@@ -175,78 +178,87 @@ public class HelloApplication extends Application {
         });
 
         btnV.setOnAction(e -> {
-            if(!nivo1.isDisabled()) {
+            //if(!nivo1.isDisabled()) {
+            if (activated[0]) {
                 root1.getChildren().remove(1);
                 nivo1.setStyle("-fx-background-color: #4CAF50;");
                 nivo2.setDisable(false);
                 activated[0] = false;
-                nivo1.setDisable(true);
+                //nivo1.setDisable(true);
                 return;
             }
-            if(!nivo2.isDisabled()) {
+            //if(!nivo2.isDisabled()
+            if (activated[1]) {
                 root1.getChildren().remove(1);
                 nivo2.setStyle("-fx-background-color: #4CAF50;");
                 nivo3.setDisable(false);
                 activated[1] = false;
-                nivo2.setDisable(true);
+                //nivo2.setDisable(true);
                 return;
             }
-            if(!nivo3.isDisabled()) {
+            //if(!nivo3.isDisabled()) {
+            if (activated[2]) {
                 root1.getChildren().remove(1);
                 nivo3.setStyle("-fx-background-color: #4CAF50;");
                 nivo4.setDisable(false);
                 dalje1.setDisable(false);
                 activated[2] = false;
-                nivo3.setDisable(true);
+                //nivo3.setDisable(true);
                 return;
             }
-            if(!nivo4.isDisabled()) {
+            //if(!nivo4.isDisabled()) {
+            if (activated[3]) {
                 root2.getChildren().remove(1);
                 nivo4.setStyle("-fx-background-color: #4CAF50;");
                 nivo5.setDisable(false);
                 activated[3] = false;
-                nivo4.setDisable(true);
+                //nivo4.setDisable(true);
                 return;
             }
-            if(!nivo5.isDisabled()) {
+            //if(!nivo5.isDisabled()) {
+            if (activated[4]) {
                 root2.getChildren().remove(1);
                 nivo5.setStyle("-fx-background-color: #4CAF50;");
                 nivo6.setDisable(false);
                 activated[4] = false;
-                nivo5.setDisable(true);
+                //nivo5.setDisable(true);
                 return;
             }
-            if(!nivo6.isDisabled()) {
+            //if(!nivo6.isDisabled()) {
+            if (activated[5]) {
                 root2.getChildren().remove(1);
                 nivo6.setStyle("-fx-background-color: #4CAF50;");
                 nivo7.setDisable(false);
                 dalje2.setDisable(false);
                 activated[5] = false;
-                nivo6.setDisable(true);
+                //nivo6.setDisable(true);
                 return;
             }
-            if(!nivo7.isDisabled()) {
+            //if(!nivo7.isDisabled()) {
+            if (activated[6]) {
                 root3.getChildren().remove(1);
                 nivo7.setStyle("-fx-background-color: #4CAF50;");
                 nivo8.setDisable(false);
                 activated[6] = false;
-                nivo7.setDisable(true);
+                //nivo7.setDisable(true);
                 return;
             }
-            if(!nivo8.isDisabled()) {
+            //if(!nivo8.isDisabled()) {
+            if (activated[7]) {
                 root3.getChildren().remove(1);
                 nivo8.setStyle("-fx-background-color: #4CAF50;");
                 nivo9.setDisable(false);
-                activated[8] = false;
-                nivo8.setDisable(true);
+                activated[7] = false;
+                //nivo8.setDisable(true);
                 return;
             }
-            if(!nivo9.isDisabled()) {
+            //if(!nivo9.isDisabled()) {
+            if (activated[8]) {
                 root3.getChildren().remove(1);
                 nivo9.setStyle("-fx-background-color: #4CAF50;");
                 dalje3.setDisable(false);
                 activated[8] = false;
-                nivo9.setDisable(true);
+                //nivo9.setDisable(true);
             }
         });
 
@@ -260,10 +272,15 @@ public class HelloApplication extends Application {
         rootE.getChildren().addAll(taE,btnE);
 
         Scene pocetna = new Scene(rootB,800,600);
+        pocetna.getStylesheets().addAll("style.css");
         Scene scena1 = new Scene(root1,800,640);
+        scena1.getStylesheets().addAll("style.css");
         Scene scena2 = new Scene(root2,800,640);
+        scena2.getStylesheets().addAll("style.css");
         Scene scena3 = new Scene(root3,800,640);
+        scena3.getStylesheets().addAll("style.css");
         Scene poslednja = new Scene(rootE,800,600);
+        poslednja.getStylesheets().addAll("style.css");
 
         stage.setScene(pocetna);
         stage.setTitle("Dobrodosli");

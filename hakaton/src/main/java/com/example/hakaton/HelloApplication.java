@@ -35,6 +35,7 @@ public class HelloApplication extends Application {
         root.getChildren().addAll(nivoi);
 
         Scene scena = new Scene(root, WINDOW_WIDTH, WINDOW_HEIGHT);
+        scena.getStylesheets().add("style.css");
         stage.setScene(scena);
         stage.setTitle("Nivoi");
         stage.show();

@@ -154,8 +154,21 @@ public class HelloApplication extends Application {
         okvir.setHeight(200);
         okvir.setWidth(500);
 
+        Image prvaT = new Image("2.png");
+        ImagePattern paternPrvaT = new ImagePattern(prvaT);
+        okvir.setFill(paternPrvaT);
+
         vbT.getChildren().addAll(textAreaT,okvir,btnT);
-        vbV.getChildren().addAll(textAreaV,textFieldV,okvir,btnV);
+
+        Image prvaV = new Image("1.png");
+        ImagePattern paternPrvaV = new ImagePattern(prvaV);
+
+        Rectangle okvir2 = new Rectangle();
+        okvir2.setHeight(200);
+        okvir2.setWidth(500);
+
+        okvir2.setFill(paternPrvaV);
+        vbV.getChildren().addAll(textAreaV,textFieldV,okvir2,btnV);
 
         vbT.getTransforms().addAll(
                 new Translate(-30,WINDOW_HEIGHT*0.3)
@@ -176,9 +189,6 @@ public class HelloApplication extends Application {
         nivo1.setOnAction(e -> {
 
             if(!activated[0]){
-                Image prvaT = new Image("2.png");
-                ImagePattern paternPrvaT = new ImagePattern(prvaT);
-                okvir.setFill(paternPrvaT);
                 root1.getChildren().addAll(vbT);
                 activated[0] = true;
             }else{
@@ -195,7 +205,7 @@ public class HelloApplication extends Application {
                         "Red je na tebe da probas! Klikni na dugme! ->");
                 textAreaV.setText("Izdvoji prezimena za sve ucenike u skoli.\nKlikni na probaj kada si spreman da proveris svoje resenje.");
 
-                Image slika = new Image("4.png");
+                Image slika = new Image("3.png");
                 ImagePattern slikaPatern = new ImagePattern(slika);
                 okvir.setFill(slikaPatern);
                 root1.getChildren().addAll(vbT);
@@ -215,7 +225,7 @@ public class HelloApplication extends Application {
                         "Red je na tebe da probas! Klikni na dugme!");
                 textAreaV.setText("Izdvoji ime, adresu i broj telefona za svakog ucenika.\nKlikni na probaj kada si spreman da proveris svoje resenje.");
 
-                Image slika = new Image("6.png");
+                Image slika = new Image("5.png");
                 ImagePattern slikaPatern = new ImagePattern(slika);
                 okvir.setFill(slikaPatern);
                 root1.getChildren().addAll(vbT);
@@ -240,7 +250,7 @@ public class HelloApplication extends Application {
                         "Red je na tebe da probas! Klikni na dugme!");
                 textAreaV.setText("Izdvoji sve informacije o ucenicima rodjenim pre 2003 godine.\nKlikni na probaj kada si spreman da proveris svoje resenje.");
 
-                Image slika = new Image("8.png");
+                Image slika = new Image("7.png");
                 ImagePattern slikaPatern = new ImagePattern(slika);
                 okvir.setFill(slikaPatern);
                 root2.getChildren().addAll(vbT);
@@ -256,15 +266,12 @@ public class HelloApplication extends Application {
                         "Ako upotrebimo AND, da bi red bio izdvojen neophodno je da oba uslova budu ispunjena.\n\n" +
                         "U slucaju da se koristi OR, dovoljno je da bar jedan bude ispunjen kako bi red bio izdvojen.\n\n" +
                         "Pogledajmo na primeru: Zelimo da izdvojimo sve decake rodjene 2001. godine\n" +
-                        "\n" +
-                        "SELECT * FROM skola WHERE godina = 2001 AND pol = M\n" +
-                        "\n" +
+                        "SELECT * FROM skola WHERE godina > 2001 AND pol = M\n" +
                         "Rezultat izvrsavanja je obojen plavom bojom\n" +
-                        "\n" +
                         "Red je na tebe da probas! Klikni na dugme!");
                 textAreaV.setText("Izdvoji sve ucenike koji su rodjeni 2003. godine ili su devojcice\nKlikni na probaj kada si spreman da proveris svoje resenje.");
 
-                Image slika = new Image("10.png");
+                Image slika = new Image("9.png");
                 ImagePattern slikaPatern = new ImagePattern(slika);
                 okvir.setFill(slikaPatern);
                 root2.getChildren().addAll(vbT);
@@ -286,7 +293,7 @@ public class HelloApplication extends Application {
                         "Red je na tebe da probas! Klikni na dugme!");
                 textAreaV.setText("Izdvoji sve ucenike koji se prezivaju Mikic, Zikic, ili Janic.\nKlikni na probaj kada si spreman da proveris svoje resenje.");
 
-                Image slika = new Image("12.png");
+                Image slika = new Image("11.png");
                 ImagePattern slikaPatern = new ImagePattern(slika);
                 okvir.setFill(slikaPatern);
                 root2.getChildren().addAll(vbT);
@@ -312,7 +319,7 @@ public class HelloApplication extends Application {
                         "Red je na tebe da probas! Klikni na dugme!");
                 textAreaV.setText("Izdvoji sve ucenike a rezultat uredi po godini opadajuce.\nKlikni na probaj kada si spreman da proveris svoje resenje.");
 
-                Image slika = new Image("14.png");
+                Image slika = new Image("13.png");
                 ImagePattern slikaPatern = new ImagePattern(slika);
                 okvir.setFill(slikaPatern);
                 root3.getChildren().addAll(vbT);
@@ -328,22 +335,17 @@ public class HelloApplication extends Application {
                         "UNION - u rezultatu ce se naci svi redovi iz oba upita\n" +
                         "INTERSECT - u rezultatu ce se naci samo oni redovi koji se nalaze u oba upita\n" +
                         "EXCEPT - u rezultatu ce se naci redovi koji se nalaze u prvom upitu ali se NE nalaze u drugom\n" +
-                        "\n" +
                         "Neophodno je da oba upita izdvajaju iste atribute kako bi skupovna operacija bila izvrsena.\n" +
-                        "\n" +
                         "Hajde da izdvojimo sve ucenike koji su rodjeni 2001. godine i koji su decaci.\n" +
-                        "\n" +
                         "SELECT * FROM skola WHERE godina = 2001\n" +
                         "UNION\n" +
                         "SELECT * FROM skola WHERE pol = M\n" +
-                        "\n" +
                         "Rezultat izvrsavanja je obojen plavom bojom\n" +
-                        "\n" +
                         "Red je na tebe da probas! Klikni na dugme!");
                 textAreaV.setText("Koristeci skupovne operatore, izdvoji sve devojcice sem onih koje su rodjene 2003.\n" +
                         "Hint: koristi operator EXCEPT");
 
-                Image slika = new Image("16.png");
+                Image slika = new Image("15.png");
                 ImagePattern slikaPatern = new ImagePattern(slika);
                 okvir.setFill(slikaPatern);
                 root3.getChildren().addAll(vbT);
@@ -361,10 +363,7 @@ public class HelloApplication extends Application {
                         "Prvi - Izdvoji ime, prezime i adresu svih ucenika koji se prezivaju Mikic ili su \nrodjeni 2000. ili 2005. godine. Hint: koristi IN operator\n" +
                         "Drugi - Izdvoji ime, prezime i adresu svih decaka koji nisu rodjeni 2001.\n" +
                         "Napravi presek izmedju ova dva upita.\n");
-
-                Image slika = new Image("18.png");
-                ImagePattern slikaPatern = new ImagePattern(slika);
-                okvir.setFill(slikaPatern);
+                okvir.setFill(null);
                 root3.getChildren().addAll(vbT);
                 activated[8] = true;
             }else{
@@ -390,8 +389,12 @@ public class HelloApplication extends Application {
 
         btnV.setOnAction(e -> {
             //if(!nivo1.isDisabled()) {
+
+            // pokreni animaciju
             if (activated[0]) {
+
                 root1.getChildren().remove(1);
+
                 nivo1.setStyle("-fx-background-color: #4CAF50;");
                 nivo2.setDisable(false);
                 activated[0] = false;

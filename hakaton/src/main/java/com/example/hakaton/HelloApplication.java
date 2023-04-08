@@ -3,18 +3,23 @@ package com.example.hakaton;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
+import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 
 public class HelloApplication extends Application {
+    private static final int WINDOW_WIDTH = 800;
+    private static final int WINDOW_HEIGHT = 640;
     Boolean[] activated = {false,false,false,false,false,false,false,false,false};
     Boolean mozesNivo = true;
     @Override
@@ -54,6 +59,59 @@ public class HelloApplication extends Application {
         dalje2.setDisable(true);
         dalje3.setDisable(true);
 
+        nivo1.setShape(new Circle(25));
+        nivo1.getTransforms().addAll(
+                new Translate(WINDOW_WIDTH * 0.12, 20)
+        );
+        nivo2.setShape(new Circle(25));
+        nivo2.getTransforms().addAll(
+                new Translate(WINDOW_WIDTH * 0.42, 20)
+        );
+        nivo3.setShape(new Circle(25));
+        nivo3.getTransforms().addAll(
+                new Translate(WINDOW_WIDTH * 0.72, 20)
+        );
+
+        nivo4.setShape(new Circle(25));
+        nivo4.getTransforms().addAll(
+                new Translate(WINDOW_WIDTH * 0.12, 20)
+        );
+        nivo5.setShape(new Circle(25));
+        nivo5.getTransforms().addAll(
+                new Translate(WINDOW_WIDTH * 0.42, 20)
+        );
+        nivo6.setShape(new Circle(25));
+        nivo6.getTransforms().addAll(
+                new Translate(WINDOW_WIDTH * 0.72, 20)
+        );
+        nivo7.setShape(new Circle(25));
+        nivo7.getTransforms().addAll(
+                new Translate(WINDOW_WIDTH * 0.12, 20)
+        );
+
+        nivo8.setShape(new Circle(25));
+        nivo8.getTransforms().addAll(
+                new Translate(WINDOW_WIDTH * 0.42, 20)
+        );
+
+        nivo9.setShape(new Circle(25));
+        nivo9.getTransforms().addAll(
+                new Translate(WINDOW_WIDTH * 0.72, 20)
+        );
+
+        dalje1.getTransforms().addAll(
+                new Translate(WINDOW_WIDTH * 0.7, WINDOW_HEIGHT * 0.9)
+        );
+
+        dalje2.getTransforms().addAll(
+                new Translate(WINDOW_WIDTH * 0.7, WINDOW_HEIGHT * 0.9)
+        );
+
+        dalje3.getTransforms().addAll(
+                new Translate(WINDOW_WIDTH * 0.7, WINDOW_HEIGHT * 0.9)
+        );
+
+
         top1.getChildren().addAll(nivo1, nivo2, nivo3);
         top1.getChildren().addAll(dalje1);
         root1.getChildren().addAll(top1);
@@ -76,7 +134,21 @@ public class HelloApplication extends Application {
         vbT.getChildren().addAll(textAreaT,btnT);
         vbV.getChildren().addAll(textAreaV,textFieldV,btnV);
 
+        vbT.getTransforms().addAll(
+                new Translate(-30,WINDOW_HEIGHT*0.3)
+        );
 
+        vbV.getTransforms().addAll(
+                new Translate(-30,WINDOW_HEIGHT*0.3)
+        );
+
+        btnT.getTransforms().addAll(
+                new Translate(200, 0)
+        );
+
+        btnV.getTransforms().addAll(
+                new Translate(160, 0)
+        );
 
         nivo1.setOnAction(e -> {
             if(!activated[0]){
@@ -271,16 +343,25 @@ public class HelloApplication extends Application {
         rootB.getChildren().addAll(taB,btnB);
         rootE.getChildren().addAll(taE,btnE);
 
-        Scene pocetna = new Scene(rootB,800,600);
+        btnB.getTransforms().addAll(
+                new Translate(350, 0)
+        );
+
+        btnE.getTransforms().addAll(
+                new Translate(350, 0)
+        );
+
+        Scene pocetna = new Scene(rootB,WINDOW_WIDTH, WINDOW_HEIGHT);
         pocetna.getStylesheets().addAll("style.css");
-        Scene scena1 = new Scene(root1,800,640);
+        Scene scena1 = new Scene(root1,WINDOW_WIDTH, WINDOW_HEIGHT);
         scena1.getStylesheets().addAll("style.css");
-        Scene scena2 = new Scene(root2,800,640);
+        Scene scena2 = new Scene(root2,WINDOW_WIDTH, WINDOW_HEIGHT);
         scena2.getStylesheets().addAll("style.css");
-        Scene scena3 = new Scene(root3,800,640);
+        Scene scena3 = new Scene(root3,WINDOW_WIDTH, WINDOW_HEIGHT);
         scena3.getStylesheets().addAll("style.css");
-        Scene poslednja = new Scene(rootE,800,600);
+        Scene poslednja = new Scene(rootE,WINDOW_WIDTH, WINDOW_HEIGHT);
         poslednja.getStylesheets().addAll("style.css");
+
 
         stage.setScene(pocetna);
         stage.setTitle("Dobrodosli");

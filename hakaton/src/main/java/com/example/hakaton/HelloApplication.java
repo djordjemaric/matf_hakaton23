@@ -9,9 +9,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
@@ -60,6 +63,8 @@ public class HelloApplication extends Application {
         dalje1.setDisable(true);
         dalje2.setDisable(true);
         dalje3.setDisable(true);
+
+
 
         nivo1.setShape(new Circle(25));
         nivo1.getTransforms().addAll(
@@ -114,6 +119,8 @@ public class HelloApplication extends Application {
         );
 
 
+
+
         top1.getChildren().addAll(nivo1, nivo2, nivo3);
         top1.getChildren().addAll(dalje1);
         root1.getChildren().addAll(top1);
@@ -142,8 +149,13 @@ public class HelloApplication extends Application {
         Button btnV = new Button("Prosledi resenje");
         VBox vbT = new VBox();
         VBox vbV = new VBox();
-        vbT.getChildren().addAll(textAreaT,btnT);
-        vbV.getChildren().addAll(textAreaV,textFieldV,btnV);
+
+        Rectangle okvir = new Rectangle();
+        okvir.setHeight(200);
+        okvir.setWidth(500);
+
+        vbT.getChildren().addAll(textAreaT,okvir,btnT);
+        vbV.getChildren().addAll(textAreaV,textFieldV,okvir,btnV);
 
         vbT.getTransforms().addAll(
                 new Translate(-30,WINDOW_HEIGHT*0.3)
@@ -162,8 +174,11 @@ public class HelloApplication extends Application {
         );
 
         nivo1.setOnAction(e -> {
-            if(!activated[0]){
 
+            if(!activated[0]){
+                Image prvaT = new Image("2.png");
+                ImagePattern paternPrvaT = new ImagePattern(prvaT);
+                okvir.setFill(paternPrvaT);
                 root1.getChildren().addAll(vbT);
                 activated[0] = true;
             }else{
@@ -173,12 +188,16 @@ public class HelloApplication extends Application {
         });
         nivo2.setOnAction(e -> {
             if(!activated[1]){
-                textAreaT.setText("Ukoliko zelimo samo odredjene informacije o ucenicima, to mozemo uraditi\n u okviru SELECT naredbe." +
+                textAreaT.setText("Ukoliko zelimo samo odredjene informacije o ucenicima, to mozemo uraditi\n u okvirPraznau SELECT naredbe." +
                         "Zelimo da izdvojimo samo imena za sve ucenike. \nTo mozemo uraditi sledecim upitom:  SELECT ime FROM skola;\n" +
                         "Rezultat izvrsavanja je obojen plavom bojom\n" +
                         "\n" +
                         "Red je na tebe da probas! Klikni na dugme! ->");
                 textAreaV.setText("Izdvoji prezimena za sve ucenike u skoli.\nKlikni na probaj kada si spreman da proveris svoje resenje.");
+
+                Image slika = new Image("4.png");
+                ImagePattern slikaPatern = new ImagePattern(slika);
+                okvir.setFill(slikaPatern);
                 root1.getChildren().addAll(vbT);
                 activated[1] = true;
             }else{
@@ -195,6 +214,10 @@ public class HelloApplication extends Application {
                         "\n" +
                         "Red je na tebe da probas! Klikni na dugme!");
                 textAreaV.setText("Izdvoji ime, adresu i broj telefona za svakog ucenika.\nKlikni na probaj kada si spreman da proveris svoje resenje.");
+
+                Image slika = new Image("6.png");
+                ImagePattern slikaPatern = new ImagePattern(slika);
+                okvir.setFill(slikaPatern);
                 root1.getChildren().addAll(vbT);
                 activated[2] = true;
             }else{
@@ -216,6 +239,10 @@ public class HelloApplication extends Application {
                         "\n" +
                         "Red je na tebe da probas! Klikni na dugme!");
                 textAreaV.setText("Izdvoji sve informacije o ucenicima rodjenim pre 2003 godine.\nKlikni na probaj kada si spreman da proveris svoje resenje.");
+
+                Image slika = new Image("8.png");
+                ImagePattern slikaPatern = new ImagePattern(slika);
+                okvir.setFill(slikaPatern);
                 root2.getChildren().addAll(vbT);
                 activated[3] = true;
             }else{
@@ -236,6 +263,10 @@ public class HelloApplication extends Application {
                         "\n" +
                         "Red je na tebe da probas! Klikni na dugme!");
                 textAreaV.setText("Izdvoji sve ucenike koji su rodjeni 2003. godine ili su devojcice\nKlikni na probaj kada si spreman da proveris svoje resenje.");
+
+                Image slika = new Image("10.png");
+                ImagePattern slikaPatern = new ImagePattern(slika);
+                okvir.setFill(slikaPatern);
                 root2.getChildren().addAll(vbT);
                 activated[4] = true;
             }else{
@@ -254,6 +285,10 @@ public class HelloApplication extends Application {
                         "\n" +
                         "Red je na tebe da probas! Klikni na dugme!");
                 textAreaV.setText("Izdvoji sve ucenike koji se prezivaju Mikic, Zikic, ili Janic.\nKlikni na probaj kada si spreman da proveris svoje resenje.");
+
+                Image slika = new Image("12.png");
+                ImagePattern slikaPatern = new ImagePattern(slika);
+                okvir.setFill(slikaPatern);
                 root2.getChildren().addAll(vbT);
                 activated[5] = true;
             }else{
@@ -276,6 +311,10 @@ public class HelloApplication extends Application {
                         "\n" +
                         "Red je na tebe da probas! Klikni na dugme!");
                 textAreaV.setText("Izdvoji sve ucenike a rezultat uredi po godini opadajuce.\nKlikni na probaj kada si spreman da proveris svoje resenje.");
+
+                Image slika = new Image("14.png");
+                ImagePattern slikaPatern = new ImagePattern(slika);
+                okvir.setFill(slikaPatern);
                 root3.getChildren().addAll(vbT);
                 activated[6] = true;
             }else{
@@ -303,6 +342,10 @@ public class HelloApplication extends Application {
                         "Red je na tebe da probas! Klikni na dugme!");
                 textAreaV.setText("Koristeci skupovne operatore, izdvoji sve devojcice sem onih koje su rodjene 2003.\n" +
                         "Hint: koristi operator EXCEPT");
+
+                Image slika = new Image("16.png");
+                ImagePattern slikaPatern = new ImagePattern(slika);
+                okvir.setFill(slikaPatern);
                 root3.getChildren().addAll(vbT);
                 activated[7] = true;
             }else{
@@ -318,6 +361,10 @@ public class HelloApplication extends Application {
                         "Prvi - Izdvoji ime, prezime i adresu svih ucenika koji se prezivaju Mikic ili su \nrodjeni 2000. ili 2005. godine. Hint: koristi IN operator\n" +
                         "Drugi - Izdvoji ime, prezime i adresu svih decaka koji nisu rodjeni 2001.\n" +
                         "Napravi presek izmedju ova dva upita.\n");
+
+                Image slika = new Image("18.png");
+                ImagePattern slikaPatern = new ImagePattern(slika);
+                okvir.setFill(slikaPatern);
                 root3.getChildren().addAll(vbT);
                 activated[8] = true;
             }else{

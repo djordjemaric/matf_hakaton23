@@ -1,7 +1,6 @@
 package com.example.hakaton;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,7 +25,7 @@ public class HelloApplication extends Application {
         Button nivo3 = new Button("3");
 
         nivo1.setOnAction(e -> {
-            Tutorijal tutorijal1 = new Tutorijal(1, new String("Prva lekcia iz SQL-a"));
+            Tutorijal tutorijal1 = new Tutorijal(1, "Prva lekcija iz SQL-a");
             tutorijal1.show();
         });
 

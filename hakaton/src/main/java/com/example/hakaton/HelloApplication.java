@@ -20,6 +20,11 @@ public class HelloApplication extends Application {
         Button nivo2 = new Button("2");
         Button nivo3 = new Button("3");
 
+        nivo1.setOnAction(e -> {
+            Tutorijal tutorijal1 = new Tutorijal(1, new String("Prva lekcia iz SQL-a"));
+            tutorijal1.show();
+        });
+
         left.getChildren().addAll(nivo1, nivo2, nivo3);
 
         VBox right = new VBox();

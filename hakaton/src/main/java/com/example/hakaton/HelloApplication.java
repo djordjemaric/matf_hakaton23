@@ -365,6 +365,7 @@ public class HelloApplication extends Application {
 
         stage.setScene(pocetna);
         stage.setTitle("Dobrodosli");
+        stage.setResizable(false);
         stage.show();
 
         btnB.setOnAction(e -> {

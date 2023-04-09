@@ -34,7 +34,6 @@ public class HelloApplication extends Application {
     private static final int WINDOW_WIDTH = 800;
     private static final int WINDOW_HEIGHT = 597;
     Boolean[] activated = {false,false,false,false,false,false,false,false,false};
-    Boolean mozesNivo = true;
     String odgovori[] = {
             "SELECT * FROM skola;",
             "SELECT prezime FROM skola;",
@@ -507,7 +506,11 @@ public class HelloApplication extends Application {
             if (activated[0]) {
                 String odgovor = textFieldV.getText();
                 if(!q.compare(odgovor,odgovori[0])){
-                    System.out.println("NETACNO");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText(null);
+                        alert.setTitle("Greska");
+                        alert.setContentText("Probaj opet!");
+                        alert.showAndWait();;
                     return;
                 }
 
@@ -548,7 +551,7 @@ public class HelloApplication extends Application {
                 });
                 fejd.play();
 
-                nivo1.setStyle("-fx-background-color: #4CAF50;");
+                nivo1.setStyle("-fx-background-color: goldenrod;");
                 nivo2.setDisable(false);
                 activated[0] = false;
                 textFieldV.setText("");
@@ -559,7 +562,11 @@ public class HelloApplication extends Application {
             if (activated[1]) {
                 String odgovor = textFieldV.getText();
                 if(!q.compare(odgovor,odgovori[1])){
-                    System.out.println("NETACNO");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText(null);
+                        alert.setTitle("Greska");
+                        alert.setContentText("Probaj opet!");
+                        alert.showAndWait();;
                     return;
                 }
                 root1.getChildren().remove(1);
@@ -599,7 +606,7 @@ public class HelloApplication extends Application {
                 });
                 fejd.play();
 
-                nivo2.setStyle("-fx-background-color: #4CAF50;");
+                nivo2.setStyle("-fx-background-color: goldenrod;");
                 nivo3.setDisable(false);
                 activated[1] = false;
                 textFieldV.setText("");
@@ -610,7 +617,11 @@ public class HelloApplication extends Application {
             if (activated[2]) {
                 String odgovor = textFieldV.getText();
                 if(!q.compare(odgovor,odgovori[2])){
-                    System.out.println("NETACNO");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText(null);
+                        alert.setTitle("Greska");
+                        alert.setContentText("Probaj opet!");
+                        alert.showAndWait();;
                     return;
                 }
                 root1.getChildren().remove(1);
@@ -650,7 +661,7 @@ public class HelloApplication extends Application {
                 });
                 fejd.play();
 
-                nivo3.setStyle("-fx-background-color: #4CAF50;");
+                nivo3.setStyle("-fx-background-color: goldenrod;");
                 nivo4.setDisable(false);
                 dalje1.setDisable(false);
                 activated[2] = false;
@@ -662,7 +673,11 @@ public class HelloApplication extends Application {
             if (activated[3]) {
                 String odgovor = textFieldV.getText();
                 if(!q.compare(odgovor,odgovori[3])){
-                    System.out.println("NETACNO");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText(null);
+                        alert.setTitle("Greska");
+                        alert.setContentText("Probaj opet!");
+                        alert.showAndWait();;
                     return;
                 }
                 root2.getChildren().remove(1);
@@ -702,7 +717,7 @@ public class HelloApplication extends Application {
                 });
                 fejd.play();
 
-                nivo4.setStyle("-fx-background-color: #4CAF50;");
+                nivo4.setStyle("-fx-background-color: goldenrod;");
                 nivo5.setDisable(false);
                 activated[3] = false;
                 //nivo4.setDisable(true);
@@ -713,7 +728,11 @@ public class HelloApplication extends Application {
             if (activated[4]) {
                 String odgovor = textFieldV.getText();
                 if(!q.compare(odgovor,odgovori[4])){
-                    System.out.println("NETACNO");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText(null);
+                        alert.setTitle("Greska");
+                        alert.setContentText("Probaj opet!");
+                        alert.showAndWait();;
                     return;
                 }
                 root2.getChildren().remove(1);
@@ -753,7 +772,7 @@ public class HelloApplication extends Application {
                 });
                 fejd.play();
 
-                nivo5.setStyle("-fx-background-color: #4CAF50;");
+                nivo5.setStyle("-fx-background-color: goldenrod;");
                 nivo6.setDisable(false);
                 activated[4] = false;
                 //nivo5.setDisable(true);
@@ -764,7 +783,11 @@ public class HelloApplication extends Application {
             if (activated[5]) {
                 String odgovor = textFieldV.getText();
                 if(!q.compare(odgovor,odgovori[5])){
-                    System.out.println("NETACNO");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText(null);
+                        alert.setTitle("Greska");
+                        alert.setContentText("Probaj opet!");
+                        alert.showAndWait();;
                     return;
                 }
                 root2.getChildren().remove(1);
@@ -804,7 +827,7 @@ public class HelloApplication extends Application {
                 });
                 fejd.play();
 
-                nivo6.setStyle("-fx-background-color: #4CAF50;");
+                nivo6.setStyle("-fx-background-color: goldenrod;");
                 nivo7.setDisable(false);
                 dalje2.setDisable(false);
                 activated[5] = false;
@@ -816,7 +839,11 @@ public class HelloApplication extends Application {
             if (activated[6]) {
                 String odgovor = textFieldV.getText();
                 if(!q.compare(odgovor,odgovori[6])){
-                    System.out.println("NETACNO");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText(null);
+                        alert.setTitle("Greska");
+                        alert.setContentText("Probaj opet!");
+                        alert.showAndWait();;
                     return;
                 }
                 root3.getChildren().remove(1);
@@ -856,7 +883,7 @@ public class HelloApplication extends Application {
                 });
                 fejd.play();
 
-                nivo7.setStyle("-fx-background-color: #4CAF50;");
+                nivo7.setStyle("-fx-background-color: goldenrod;");
                 nivo8.setDisable(false);
                 activated[6] = false;
                 //nivo7.setDisable(true);
@@ -867,7 +894,11 @@ public class HelloApplication extends Application {
             if (activated[7]) {
                 String odgovor = textFieldV.getText();
                 if(!q.compare(odgovor,odgovori[7])){
-                    System.out.println("NETACNO");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText(null);
+                        alert.setTitle("Greska");
+                        alert.setContentText("Probaj opet!");
+                        alert.showAndWait();;
                     return;
                 }
                 root3.getChildren().remove(1);
@@ -907,7 +938,7 @@ public class HelloApplication extends Application {
                 });
                 fejd.play();
 
-                nivo8.setStyle("-fx-background-color: #4CAF50;");
+                nivo8.setStyle("-fx-background-color: goldenrod;");
                 nivo9.setDisable(false);
                 activated[7] = false;
                 //nivo8.setDisable(true);
@@ -918,11 +949,15 @@ public class HelloApplication extends Application {
             if (activated[8]) {
                 String odgovor = textFieldV.getText();
                 if(!q.compare(odgovor,odgovori[8])){
-                    System.out.println("NETACNO");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText(null);
+                        alert.setTitle("Greska");
+                        alert.setContentText("Probaj opet!");
+                        alert.showAndWait();;
                     return;
                 }
                 root3.getChildren().remove(1);
-                nivo9.setStyle("-fx-background-color: #4CAF50;");
+                nivo9.setStyle("-fx-background-color: goldenrod;");
                 dalje3.setDisable(false);
                 activated[8] = false;
                 textFieldV.setText("");

@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.Background;
@@ -30,7 +32,7 @@ import java.util.Objects;
 
 public class HelloApplication extends Application {
     private static final int WINDOW_WIDTH = 800;
-    private static final int WINDOW_HEIGHT = 640;
+    private static final int WINDOW_HEIGHT = 597;
     Boolean[] activated = {false,false,false,false,false,false,false,false,false};
     Boolean mozesNivo = true;
     String odgovori[] = {
@@ -153,7 +155,7 @@ public class HelloApplication extends Application {
         Button nivo9 = new Button("9");
         Button dalje3 = new Button("Finish");
 
-        Image pozadinaSlika = new Image("slika.jpg");
+        Image pozadinaSlika = new Image("img-01.png");
         BackgroundImage pozadina = new BackgroundImage(pozadinaSlika,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO,false,false,false,false));
         Background b = new Background(pozadina);
 
@@ -168,8 +170,6 @@ public class HelloApplication extends Application {
         dalje1.setDisable(true);
         dalje2.setDisable(true);
         dalje3.setDisable(true);
-
-
 
         nivo1.setShape(new Circle(25));
         nivo1.getTransforms().addAll(
@@ -238,7 +238,7 @@ public class HelloApplication extends Application {
         top3.getChildren().addAll(dalje3);
         root3.getChildren().addAll(top3);
 
-        Text textAreaT = new Text("Osnovni upit se sastoji od naredbi SELECT i FROM\n" +
+        TextArea textAreaT = new TextArea("Osnovni upit se sastoji od naredbi SELECT i FROM\n" +
                 "SELECT naredbom oznacavamo koje atribute zelimo da izdvojimo\n" +
                 "FROM naredbom oznacavamo iz koje tabele zelimo da izdvojimo informacije\n" +
                 "Ukoliko zelimo da izdvojimo sve atribute, mozemo iskoristiti operator *\n" +
@@ -248,7 +248,15 @@ public class HelloApplication extends Application {
                 "Upit izgleda ovako: SELECT * FROM skola; \n Red je na tebe da probas! Klikni na dugme!");
 
         //prikazi sliku
-        Text textAreaV = new Text("Izdvoji sve atribute o svim ucenicima u skoli. \n\nKlikni na probaj kada si spreman da proveris svoje resenje.");
+        textAreaT.setWrapText(true);
+        textAreaT.setEditable(false);
+        textAreaT.setPrefWidth(200);
+        textAreaT.setPrefHeight(100);
+        TextArea textAreaV = new TextArea("Izdvoji sve atribute o svim ucenicima u skoli. \n\nKlikni na probaj kada si spreman da proveris svoje resenje.");
+        textAreaV.setWrapText(true);
+        textAreaV.setEditable(false);
+        textAreaV.setPrefWidth(200);
+        textAreaV.setPrefHeight(100);
         TextField textFieldV = new TextField();
         Button btnT = new Button("Probaj");
         Button btnV = new Button("Prosledi resenje");
@@ -931,6 +939,9 @@ public class HelloApplication extends Application {
                 "\n" +
                 "Tabela koju cemo korisiti u nastavku opisuje ucenike u jednoj skoli i izgleda ovako:");
         //taB.setStyle("-fx-text-alignment: center;");
+        taB.getTransforms().addAll(
+                new Translate(115, 0)
+        );
         Text taE = new Text();
         //taE.setStyle("-fx-text-alignment: center;");
         Button btnB = new Button("Zapocni");
@@ -962,7 +973,6 @@ public class HelloApplication extends Application {
         Label lbl = new Label(pitanjaTest[redniBrojPitanja][0]);
         rootTest.getChildren().addAll(lbl,rb1,rb2,rb3,rb4);
 
-
         Scene pocetna = new Scene(rootB,WINDOW_WIDTH, WINDOW_HEIGHT);
         pocetna.getStylesheets().addAll("style.css");
         Scene scena1 = new Scene(root1,WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -975,6 +985,470 @@ public class HelloApplication extends Application {
         scenaTest.getStylesheets().addAll("style.css");
         Scene poslednja = new Scene(rootE,WINDOW_WIDTH, WINDOW_HEIGHT);
         poslednja.getStylesheets().addAll("style.css");
+
+        scena1.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                if (activated[0]) {
+                    String odgovor = textFieldV.getText();
+                    if(!q.compare(odgovor,odgovori[0])){
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText(null);
+                        alert.setTitle("Greska");
+                        alert.setContentText("Probaj opet!");
+                        alert.showAndWait();
+                        return;
+                    }
+
+                    root1.getChildren().remove(1);
+
+                    Group group = new Group();
+
+                    Rectangle okvir3 = new Rectangle();
+                    okvir3.setHeight(200);
+                    okvir3.setWidth(500);
+
+                    Rectangle okvir2c = new Rectangle();
+                    okvir2c.setHeight(200);
+                    okvir2c.setWidth(500);
+
+                    Image c = new Image("1.png");
+                    ImagePattern paternc = new ImagePattern(c);
+                    okvir2c.setFill(paternc);
+
+                    group.getChildren().addAll(okvir3,okvir2c);
+                    group.getTransforms().addAll(
+                            new Translate(-30, WINDOW_HEIGHT * 0.3)
+                    );
+
+                    root1.getChildren().addAll(group);
+
+                    FadeTransition fejd = new FadeTransition(Duration.seconds(2),okvir2c);
+                    fejd.setFromValue(1.0);
+                    fejd.setToValue(0.0);
+
+                    Image p = new Image("2.png");
+                    ImagePattern pp = new ImagePattern(p);
+                    okvir3.setFill(pp);
+
+
+                    fejd.setOnFinished(actionEvent -> {
+                        root1.getChildren().remove(1);
+                    });
+                    fejd.play();
+
+                    nivo1.setStyle("-fx-background-color: goldenrod;");
+                    nivo2.setDisable(false);
+                    activated[0] = false;
+                    //nivo1.setDisable(true);
+                    return;
+                }
+                //if(!nivo2.isDisabled()
+                if (activated[1]) {
+                    String odgovor = textFieldV.getText();
+                    if(!q.compare(odgovor,odgovori[1])){
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Greska");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Probaj opet!");
+                        alert.showAndWait();
+                        return;
+                    }
+                    root1.getChildren().remove(1);
+
+                    Group group = new Group();
+
+                    Rectangle okvir3 = new Rectangle();
+                    okvir3.setHeight(200);
+                    okvir3.setWidth(500);
+
+                    Rectangle okvir2c = new Rectangle();
+                    okvir2c.setHeight(200);
+                    okvir2c.setWidth(500);
+
+                    Image c = new Image("1.png");
+                    ImagePattern paternc = new ImagePattern(c);
+                    okvir2c.setFill(paternc);
+
+                    group.getChildren().addAll(okvir3,okvir2c);
+                    group.getTransforms().addAll(
+                            new Translate(-30, WINDOW_HEIGHT * 0.3)
+                    );
+
+                    root1.getChildren().addAll(group);
+
+                    FadeTransition fejd = new FadeTransition(Duration.seconds(2),okvir2c);
+                    fejd.setFromValue(1.0);
+                    fejd.setToValue(0.0);
+
+                    Image p = new Image("4.png");
+                    ImagePattern pp = new ImagePattern(p);
+                    okvir3.setFill(pp);
+
+
+                    fejd.setOnFinished(actionEvent -> {
+                        root1.getChildren().remove(1);
+                    });
+                    fejd.play();
+
+                    nivo2.setStyle("-fx-background-color: goldenrod;");
+                    nivo3.setDisable(false);
+                    activated[1] = false;
+                    //nivo2.setDisable(true);
+                    return;
+                }
+                //if(!nivo3.isDisabled()) {
+                if (activated[2]) {
+                    String odgovor = textFieldV.getText();
+                    if(!q.compare(odgovor,odgovori[2])){
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Greska");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Probaj opet!");
+                        alert.showAndWait();;
+                        return;
+                    }
+                    root1.getChildren().remove(1);
+
+                    Group group = new Group();
+
+                    Rectangle okvir3 = new Rectangle();
+                    okvir3.setHeight(200);
+                    okvir3.setWidth(500);
+
+                    Rectangle okvir2c = new Rectangle();
+                    okvir2c.setHeight(200);
+                    okvir2c.setWidth(500);
+
+                    Image c = new Image("1.png");
+                    ImagePattern paternc = new ImagePattern(c);
+                    okvir2c.setFill(paternc);
+
+                    group.getChildren().addAll(okvir3,okvir2c);
+                    group.getTransforms().addAll(
+                            new Translate(-30, WINDOW_HEIGHT * 0.3)
+                    );
+
+                    root1.getChildren().addAll(group);
+
+                    FadeTransition fejd = new FadeTransition(Duration.seconds(2),okvir2c);
+                    fejd.setFromValue(1.0);
+                    fejd.setToValue(0.0);
+
+                    Image p = new Image("6.png");
+                    ImagePattern pp = new ImagePattern(p);
+                    okvir3.setFill(pp);
+
+
+                    fejd.setOnFinished(actionEvent -> {
+                        root1.getChildren().remove(1);
+                    });
+                    fejd.play();
+
+                    nivo3.setStyle("-fx-background-color: goldenrod;");
+                    nivo4.setDisable(false);
+                    dalje1.setDisable(false);
+                    activated[2] = false;
+                    //nivo3.setDisable(true);
+                    return;
+                }
+            }
+        });
+
+        scena2.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                if (activated[3]) {
+                    String odgovor = textFieldV.getText();
+                    if(!q.compare(odgovor,odgovori[3])){
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Greska");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Probaj opet!");
+                        alert.showAndWait();;
+                        return;
+                    }
+                    root2.getChildren().remove(1);
+
+                    Group group = new Group();
+
+                    Rectangle okvir3 = new Rectangle();
+                    okvir3.setHeight(200);
+                    okvir3.setWidth(500);
+
+                    Rectangle okvir2c = new Rectangle();
+                    okvir2c.setHeight(200);
+                    okvir2c.setWidth(500);
+
+                    Image c = new Image("1.png");
+                    ImagePattern paternc = new ImagePattern(c);
+                    okvir2c.setFill(paternc);
+
+                    group.getChildren().addAll(okvir3,okvir2c);
+                    group.getTransforms().addAll(
+                            new Translate(-30, WINDOW_HEIGHT * 0.3)
+                    );
+
+                    root2.getChildren().addAll(group);
+
+                    FadeTransition fejd = new FadeTransition(Duration.seconds(2),okvir2c);
+                    fejd.setFromValue(1.0);
+                    fejd.setToValue(0.0);
+
+                    Image p = new Image("8.png");
+                    ImagePattern pp = new ImagePattern(p);
+                    okvir3.setFill(pp);
+
+
+                    fejd.setOnFinished(actionEvent -> {
+                        root2.getChildren().remove(1);
+                    });
+                    fejd.play();
+
+                    nivo4.setStyle("-fx-background-color: goldenrod;");
+                    nivo5.setDisable(false);
+                    activated[3] = false;
+                    //nivo4.setDisable(true);
+                    return;
+                }
+                //if(!nivo5.isDisabled()) {
+                if (activated[4]) {
+                    String odgovor = textFieldV.getText();
+                    if(!q.compare(odgovor,odgovori[4])){
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Greska");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Probaj opet!");
+                        alert.showAndWait();;
+                        return;
+                    }
+                    root2.getChildren().remove(1);
+
+                    Group group = new Group();
+
+                    Rectangle okvir3 = new Rectangle();
+                    okvir3.setHeight(200);
+                    okvir3.setWidth(500);
+
+                    Rectangle okvir2c = new Rectangle();
+                    okvir2c.setHeight(200);
+                    okvir2c.setWidth(500);
+
+                    Image c = new Image("1.png");
+                    ImagePattern paternc = new ImagePattern(c);
+                    okvir2c.setFill(paternc);
+
+                    group.getChildren().addAll(okvir3,okvir2c);
+                    group.getTransforms().addAll(
+                            new Translate(-30, WINDOW_HEIGHT * 0.3)
+                    );
+
+                    root2.getChildren().addAll(group);
+
+                    FadeTransition fejd = new FadeTransition(Duration.seconds(2),okvir2c);
+                    fejd.setFromValue(1.0);
+                    fejd.setToValue(0.0);
+
+                    Image p = new Image("10.png");
+                    ImagePattern pp = new ImagePattern(p);
+                    okvir3.setFill(pp);
+
+
+                    fejd.setOnFinished(actionEvent -> {
+                        root2.getChildren().remove(1);
+                    });
+                    fejd.play();
+
+                    nivo5.setStyle("-fx-background-color: goldenrod;");
+                    nivo6.setDisable(false);
+                    activated[4] = false;
+                    //nivo5.setDisable(true);
+                    return;
+                }
+                //if(!nivo6.isDisabled()) {
+                if (activated[5]) {
+                    String odgovor = textFieldV.getText();
+                    if(!q.compare(odgovor,odgovori[5])){
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Greska");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Probaj opet!");
+                        alert.showAndWait();;
+                        return;
+                    }
+                    root2.getChildren().remove(1);
+
+                    Group group = new Group();
+
+                    Rectangle okvir3 = new Rectangle();
+                    okvir3.setHeight(200);
+                    okvir3.setWidth(500);
+
+                    Rectangle okvir2c = new Rectangle();
+                    okvir2c.setHeight(200);
+                    okvir2c.setWidth(500);
+
+                    Image c = new Image("1.png");
+                    ImagePattern paternc = new ImagePattern(c);
+                    okvir2c.setFill(paternc);
+
+                    group.getChildren().addAll(okvir3,okvir2c);
+                    group.getTransforms().addAll(
+                            new Translate(-30, WINDOW_HEIGHT * 0.3)
+                    );
+
+                    root2.getChildren().addAll(group);
+
+                    FadeTransition fejd = new FadeTransition(Duration.seconds(2),okvir2c);
+                    fejd.setFromValue(1.0);
+                    fejd.setToValue(0.0);
+
+                    Image p = new Image("12.png");
+                    ImagePattern pp = new ImagePattern(p);
+                    okvir3.setFill(pp);
+
+
+                    fejd.setOnFinished(actionEvent -> {
+                        root2.getChildren().remove(1);
+                    });
+                    fejd.play();
+
+                    nivo6.setStyle("-fx-background-color: goldenrod;");
+                    nivo7.setDisable(false);
+                    dalje2.setDisable(false);
+                    activated[5] = false;
+                    //nivo6.setDisable(true);
+                    return;
+                }
+            }
+        });
+
+        scena3.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                if (activated[6]) {
+                    String odgovor = textFieldV.getText();
+                    if(!q.compare(odgovor,odgovori[6])){
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Greska");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Probaj opet!");
+                        alert.showAndWait();;
+                        return;
+                    }
+                    root3.getChildren().remove(1);
+
+                    Group group = new Group();
+
+                    Rectangle okvir3 = new Rectangle();
+                    okvir3.setHeight(200);
+                    okvir3.setWidth(500);
+
+                    Rectangle okvir2c = new Rectangle();
+                    okvir2c.setHeight(200);
+                    okvir2c.setWidth(500);
+
+                    Image c = new Image("1.png");
+                    ImagePattern paternc = new ImagePattern(c);
+                    okvir2c.setFill(paternc);
+
+                    group.getChildren().addAll(okvir3,okvir2c);
+                    group.getTransforms().addAll(
+                            new Translate(-30, WINDOW_HEIGHT * 0.3)
+                    );
+
+                    root3.getChildren().addAll(group);
+
+                    FadeTransition fejd = new FadeTransition(Duration.seconds(2),okvir2c);
+                    fejd.setFromValue(1.0);
+                    fejd.setToValue(0.0);
+
+                    Image p = new Image("14.png");
+                    ImagePattern pp = new ImagePattern(p);
+                    okvir3.setFill(pp);
+
+
+                    fejd.setOnFinished(actionEvent -> {
+                        root3.getChildren().remove(1);
+                    });
+                    fejd.play();
+
+                    nivo7.setStyle("-fx-background-color: goldenrod;");
+                    nivo8.setDisable(false);
+                    activated[6] = false;
+                    //nivo7.setDisable(true);
+                    return;
+                }
+                //if(!nivo8.isDisabled()) {
+                if (activated[7]) {
+                    String odgovor = textFieldV.getText();
+                    if(!q.compare(odgovor,odgovori[7])){
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Greska");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Probaj opet!");
+                        alert.showAndWait();;
+                        return;
+                    }
+                    root3.getChildren().remove(1);
+
+                    Group group = new Group();
+
+                    Rectangle okvir3 = new Rectangle();
+                    okvir3.setHeight(200);
+                    okvir3.setWidth(500);
+
+                    Rectangle okvir2c = new Rectangle();
+                    okvir2c.setHeight(200);
+                    okvir2c.setWidth(500);
+
+                    Image c = new Image("1.png");
+                    ImagePattern paternc = new ImagePattern(c);
+                    okvir2c.setFill(paternc);
+
+                    group.getChildren().addAll(okvir3,okvir2c);
+                    group.getTransforms().addAll(
+                            new Translate(-30, WINDOW_HEIGHT * 0.3)
+                    );
+
+                    root3.getChildren().addAll(group);
+
+                    FadeTransition fejd = new FadeTransition(Duration.seconds(2),okvir2c);
+                    fejd.setFromValue(1.0);
+                    fejd.setToValue(0.0);
+
+                    Image p = new Image("16.png");
+                    ImagePattern pp = new ImagePattern(p);
+                    okvir3.setFill(pp);
+
+
+                    fejd.setOnFinished(actionEvent -> {
+                        root3.getChildren().remove(1);
+                    });
+                    fejd.play();
+
+                    nivo8.setStyle("-fx-background-color: goldenrod;");
+                    nivo9.setDisable(false);
+                    activated[7] = false;
+                    //nivo8.setDisable(true);
+                    return;
+                }
+                //if(!nivo9.isDisabled()) {
+                if (activated[8]) {
+                    String odgovor = textFieldV.getText();
+                    if(!q.compare(odgovor,odgovori[8])){
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Greska");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Probaj opet!");
+                        alert.showAndWait();;
+                        return;
+                    }
+                    root3.getChildren().remove(1);
+                    nivo9.setStyle("-fx-background-color: goldenrod;");
+                    dalje3.setDisable(false);
+                    activated[8] = false;
+                    //nivo9.setDisable(true);
+                }
+            }
+        });
 
         rootB.setBackground(b);
         root1.setBackground(b);

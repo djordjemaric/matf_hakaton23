@@ -1,6 +1,14 @@
 .button {
-    -fx-background-color: #4CAF50;
+    -fx-background-color: goldenrod;
     -fx-text-fill: white;
     -fx-font-size: 14pt;
     -fx-padding: 8 16;
+}
+
+.label {
+    -fx-background-color: white;
+}
+
+.vbox {
+    -fx-background-color: white;
 }

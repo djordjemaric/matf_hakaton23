@@ -26,8 +26,6 @@ public class Query {
 
             stmt1 = c.createStatement();
             stmt2 = c.createStatement();
-//            String query = "(" + q1 +") EXCEPT (" + q2 + ");";
-//            rs = stmt.executeQuery(q1);
             ResultSet rs1 = stmt1.executeQuery(q1);
             ResultSet rs2 = stmt2.executeQuery(q2);
             ResultSetMetaData rsmd1 = rs1.getMetaData();
@@ -37,9 +35,6 @@ public class Query {
             while ( rs1.next() && rs2.next()) {
                 for(int i = 1; i <= rsmd1.getColumnCount(); i++){
                     String columnNameRs1 = rsmd1.getColumnName(i);
-
-                    System.out.println(rs1.getObject(i));
-                    System.out.println(rs2.getObject(columnNameRs1));
                     if (!rs1.getObject(i).equals(rs2.getObject(columnNameRs1))) {
                         return false;
                     }

@@ -2,8 +2,6 @@ package com.example.hakaton;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -27,7 +25,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.util.Date;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 
@@ -119,15 +118,28 @@ public class HelloApplication extends Application {
                     "D. Isključivanje zajedničkih redova iz dve ili više SELECT naredbi"}
     };
 
-    String[] odgovoriTest = {"1", "1", "1", "1", "1", "1", "1", "3", "4", "1", "3", "4"};
+    String[] odgovoriTest = {"1", "1", "1", "1", "1", "1", "1", "3", "4", "1", "3"};
     int brojTacnihOdgovora = 0;
     int redniBrojPitanja = 0;
 
-    Date timeStart = new Date();
-    Date timeEnd = new Date();
+    static LocalTime timeStart;
+    static LocalTime timeEnd;
 
     public static void rezultat(int brojTacnihOdgovora,Text taE,Stage stage,Scene poslednja){
-        Integer brojPoena = 10*(brojTacnihOdgovora-1);
+
+        timeEnd = LocalTime.now();
+        long brojSekundi = timeEnd.until(timeStart, ChronoUnit.SECONDS);
+
+
+        double brojPoena = 10*(brojTacnihOdgovora-1);
+        if(brojSekundi > 240){
+            brojPoena*=0.9;
+        }
+        if(brojSekundi <= 120){
+            brojPoena*=1.1;
+        }
+
+
         taE.setText("Uspesno ste zavrsili sve lekcije\n" + "Osvoji li ste " + brojPoena + " poena.");
         taE.setStyle("-fx-background-color: white");
         taE.getTransforms().addAll(new Translate(WINDOW_WIDTH * 0.4,WINDOW_HEIGHT * 0.7));
@@ -316,6 +328,18 @@ public class HelloApplication extends Application {
         nivo1.setOnAction(e -> {
 
             if(!activated[0]){
+                if(root1.getChildren().size()==2) {
+                    root1.getChildren().remove(1);
+                }
+                textAreaT.setText("Osnovni upit se sastoji od naredbi SELECT i FROM\n" +
+                        "SELECT naredbom oznacavamo koje atribute zelimo da izdvojimo\n" +
+                        "FROM naredbom oznacavamo iz koje tabele zelimo da izdvojimo informacije\n" +
+                        "Ukoliko zelimo da izdvojimo sve atribute, mozemo iskoristiti operator *\n" +
+                        "\n" +
+                        "Hajde da izvrsimo nas prvi upit. Zelimo da izdvojimo sve atribute o svim ucenicima u nasoj skoli.\n" +
+                        "\n" +
+                        "Upit izgleda ovako: SELECT * FROM skola; \n Red je na tebe da probas! Klikni na dugme!");
+                textAreaV.setText("Izdvoji sve atribute o svim ucenicima u skoli. \n\nKlikni na probaj kada si spreman da proveris svoje resenje.");
                 root1.getChildren().addAll(vbT);
                 activated[0] = true;
             }else{
@@ -1161,6 +1185,7 @@ public class HelloApplication extends Application {
 
                     fejd.setOnFinished(actionEvent -> {
                         root1.getChildren().remove(1);
+                        root1.getChildren().addAll(cestitka);
                     });
                     fejd.play();
 
@@ -1215,6 +1240,7 @@ public class HelloApplication extends Application {
 
                     fejd.setOnFinished(actionEvent -> {
                         root1.getChildren().remove(1);
+                        root1.getChildren().addAll(cestitka);
                     });
                     fejd.play();
 
@@ -1269,6 +1295,7 @@ public class HelloApplication extends Application {
 
                     fejd.setOnFinished(actionEvent -> {
                         root1.getChildren().remove(1);
+                        root1.getChildren().addAll(cestitka);
                     });
                     fejd.play();
 
@@ -1328,6 +1355,7 @@ public class HelloApplication extends Application {
 
                     fejd.setOnFinished(actionEvent -> {
                         root2.getChildren().remove(1);
+                        root2.getChildren().addAll(cestitka);
                     });
                     fejd.play();
 
@@ -1382,6 +1410,7 @@ public class HelloApplication extends Application {
 
                     fejd.setOnFinished(actionEvent -> {
                         root2.getChildren().remove(1);
+                        root2.getChildren().addAll(cestitka);
                     });
                     fejd.play();
 
@@ -1436,6 +1465,7 @@ public class HelloApplication extends Application {
 
                     fejd.setOnFinished(actionEvent -> {
                         root2.getChildren().remove(1);
+                        root2.getChildren().addAll(cestitka);
                     });
                     fejd.play();
 
@@ -1495,6 +1525,7 @@ public class HelloApplication extends Application {
 
                     fejd.setOnFinished(actionEvent -> {
                         root3.getChildren().remove(1);
+                        root3.getChildren().addAll(cestitka);
                     });
                     fejd.play();
 
@@ -1549,6 +1580,7 @@ public class HelloApplication extends Application {
 
                     fejd.setOnFinished(actionEvent -> {
                         root3.getChildren().remove(1);
+                        root3.getChildren().addAll(cestitka);
                     });
                     fejd.play();
 
@@ -1574,6 +1606,7 @@ public class HelloApplication extends Application {
                     dalje3.setDisable(false);
                     activated[8] = false;
                     //nivo9.setDisable(true);
+                    root3.getChildren().addAll(cestitka);
                 }
             }
         });
@@ -1696,6 +1729,7 @@ public class HelloApplication extends Application {
             stage.setScene(scenaTest);
             stage.setTitle("Kviz");
             stage.show();
+            timeStart = LocalTime.now();
         });
 
     }

@@ -431,7 +431,7 @@ public class HelloApplication extends Application {
             // pokreni animaciju
             if (activated[0]) {
                 String odgovor = textFieldV.getText();
-                if(q.compare(odgovor,odgovori[0])){
+                if(!q.compare(odgovor,odgovori[0])){
                     System.out.println("NETACNO");
                     return;
                 }

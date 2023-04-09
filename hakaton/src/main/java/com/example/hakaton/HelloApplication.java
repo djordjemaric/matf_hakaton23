@@ -48,8 +48,7 @@ public class HelloApplication extends Application {
             "SELECT * FROM skola WHERE prezime IN ('Mikic', 'Zikic', 'Janic');",
             "SELECT * FROM skola ORDER BY godina DESC;",
             "SELECT * FROM skola WHERE pol = 'Z' EXCEPT SELECT * FROM skola WHERE godina = 2003;",
-            "SELECT ime, prezime, adresa FROM skola WHERE prezime = 'Mikic' OR godina IN (2000, 2005) " +
-                    "INTERSECT SELECT ime, prezime, adresa FROM skola WHERE pol = 'M' AND godina <> 2001;"
+            "SELECT ime, prezime, adresa FROM skola WHERE prezime = 'Mikic' OR godina IN (2000, 2005) INTERSECT SELECT ime, prezime, adresa FROM skola WHERE pol = 'M' AND godina <> 2001;"
     };
     Query q = new Query();
     String[][] pitanjaTest = {
@@ -130,6 +129,8 @@ public class HelloApplication extends Application {
     public static void rezultat(int brojTacnihOdgovora,Text taE,Stage stage,Scene poslednja){
         Integer brojPoena = 10*(brojTacnihOdgovora-1);
         taE.setText("Uspesno ste zavrsili sve lekcije\n" + "Osvoji li ste " + brojPoena + " poena.");
+        taE.setStyle("-fx-background-color: white");
+        taE.getTransforms().addAll(new Translate(WINDOW_WIDTH * 0.4,WINDOW_HEIGHT * 0.7));
         stage.setScene(poslednja);
         stage.setTitle("Kraj");
         stage.show();
@@ -158,6 +159,11 @@ public class HelloApplication extends Application {
         Button nivo8 = new Button("8");
         Button nivo9 = new Button("9");
         Button dalje3 = new Button("Finish");
+
+        Text cestitka = new Text("Bravo, samo tako nastavi!!!");
+        cestitka.getTransforms().addAll(new Translate(WINDOW_WIDTH*0.1,WINDOW_HEIGHT*0.4));
+        cestitka.setFill(Color.WHITE);
+        cestitka.setStyle("-fx-font-size: 30px; -fx-font-weight: bold");
 
         Image pozadinaSlika = new Image("img-01.png");
         BackgroundImage pozadina = new BackgroundImage(pozadinaSlika,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO,false,false,false,false));
@@ -265,6 +271,7 @@ public class HelloApplication extends Application {
         textAreaV.setStyle("-fx-font-size: 17px");
         TextField textFieldV = new TextField();
         textFieldV.setStyle("-fx-font-size: 17px");
+        textFieldV.setPromptText("Unesite svoj upit...");
         Button btnT = new Button("Probaj");
         Button btnV = new Button("Prosledi resenje");
         VBox vbT = new VBox();
@@ -318,6 +325,9 @@ public class HelloApplication extends Application {
         });
         nivo2.setOnAction(e -> {
             if(!activated[1]){
+                if(root1.getChildren().size()==2) {
+                    root1.getChildren().remove(1);
+                }
                 textAreaT.setText("Ukoliko zelimo samo odredjene informacije o ucenicima, to mozemo uraditi\n u okvirPraznau SELECT naredbe." +
                         "Zelimo da izdvojimo samo imena za sve ucenike. \nTo mozemo uraditi sledecim upitom:  SELECT ime FROM skola;\n" +
                         "Rezultat izvrsavanja je obojen plavom bojom\n" +
@@ -337,6 +347,9 @@ public class HelloApplication extends Application {
         });
         nivo3.setOnAction(e -> {
             if(!activated[2]){
+                if(root1.getChildren().size()==2) {
+                    root1.getChildren().remove(1);
+                }
                 textAreaT.setText("Mozemo odabrati proizvoljan broj atributa iz tabele.\nSada zelimo da izdvojimo ime i prezime za sve ucenike.\n" +
                         "To mozemo uraditi sledecim upitom: SELECT ime, prezime FROM skola\n" +
                         "\n" +
@@ -358,6 +371,7 @@ public class HelloApplication extends Application {
 
         nivo4.setOnAction(e -> {
             if(!activated[3]){
+
                 textAreaT.setText("WHERE naredbu koristimo kako bismo izdvojili samo one redove koji ispunjavaju navedeni uslov.\n" +
                         "Mozemo koristiti operatore =, >, < <>\n" +
                         "\n" +
@@ -382,6 +396,9 @@ public class HelloApplication extends Application {
         });
         nivo5.setOnAction(e -> {
             if(!activated[4]){
+                if(root2.getChildren().size()==2) {
+                    root2.getChildren().remove(1);
+                }
                 textAreaT.setText("Ukoliko su nam potrebni stroziji kriterijumi, uslove mozemo spajati naredbama AND i OR.\n\n" +
                         "Ako upotrebimo AND, da bi red bio izdvojen neophodno je da oba uslova budu ispunjena.\n\n" +
                         "U slucaju da se koristi OR, dovoljno je da bar jedan bude ispunjen kako bi red bio izdvojen.\n\n" +
@@ -403,6 +420,9 @@ public class HelloApplication extends Application {
         });
         nivo6.setOnAction(e -> {
             if(!activated[5]){
+                if(root2.getChildren().size()==2) {
+                    root2.getChildren().remove(1);
+                }
                 textAreaT.setText("Ukoliko imamo vise dozvoljenih opcija, umesto da pisemo nekoliko OR naredbi,\n mozemo iskoristiti IN naredbu.\n" +
                         "Hajde da izdvojimo sve ucenike koji se zovu Pera, Mika ili Jelena\n" +
                         "\n" +
@@ -426,6 +446,7 @@ public class HelloApplication extends Application {
 
         nivo7.setOnAction(e -> {
             if(!activated[6]){
+
                 textAreaT.setText("Nase rezultate mozemo uredjivati po razlicitim kriterijumima naredbom ORDER BY.\n" +
                         "Ukoliko zelimo da budu uredjeni po kriterijumu rastuce, koristimo kljucnu rec ASC (ascending). \n" +
                         "Ako zelimo opadajuce, koristimo DESC (descending)\n" +
@@ -451,6 +472,9 @@ public class HelloApplication extends Application {
         });
         nivo8.setOnAction(e -> {
             if(!activated[7]){
+                if(root3.getChildren().size()==2) {
+                    root3.getChildren().remove(1);
+                }
                 textAreaT.setText("Nad upitima mozemo izvrsavati i skupovne operacije \n" +
                         "UNION - u rezultatu ce se naci svi redovi iz oba upita\n" +
                         "INTERSECT - u rezultatu ce se naci samo oni redovi koji se nalaze u oba upita\n" +
@@ -477,6 +501,9 @@ public class HelloApplication extends Application {
         });
         nivo9.setOnAction(e -> {
             if(!activated[8]){
+                if(root3.getChildren().size()==2) {
+                    root3.getChildren().remove(1);
+                }
                 textAreaT.setText("Vreme je da proverimo sta si naucio! \n" +
                         "Na sledecem slajdu se nalazi zadatak gde ces moci da proveris sve oblasti koje smo danas obradili");
 
@@ -557,6 +584,7 @@ public class HelloApplication extends Application {
 
                 fejd.setOnFinished(actionEvent -> {
                     root1.getChildren().remove(1);
+                    root1.getChildren().addAll(cestitka);
                 });
                 fejd.play();
 
@@ -564,6 +592,9 @@ public class HelloApplication extends Application {
                 nivo2.setDisable(false);
                 activated[0] = false;
                 textFieldV.setText("");
+
+
+
                 //nivo1.setDisable(true);
                 return;
             }
@@ -612,6 +643,7 @@ public class HelloApplication extends Application {
 
                 fejd.setOnFinished(actionEvent -> {
                     root1.getChildren().remove(1);
+                    root1.getChildren().addAll(cestitka);
                 });
                 fejd.play();
 
@@ -619,6 +651,7 @@ public class HelloApplication extends Application {
                 nivo3.setDisable(false);
                 activated[1] = false;
                 textFieldV.setText("");
+//                root1.getChildren().addAll(cestitka);
                 //nivo2.setDisable(true);
                 return;
             }
@@ -667,6 +700,7 @@ public class HelloApplication extends Application {
 
                 fejd.setOnFinished(actionEvent -> {
                     root1.getChildren().remove(1);
+                    root1.getChildren().addAll(cestitka);
                 });
                 fejd.play();
 
@@ -676,6 +710,7 @@ public class HelloApplication extends Application {
                 activated[2] = false;
                 //nivo3.setDisable(true);
                 textFieldV.setText("");
+//                root1.getChildren().addAll(cestitka);
                 return;
             }
             //if(!nivo4.isDisabled()) {
@@ -723,6 +758,7 @@ public class HelloApplication extends Application {
 
                 fejd.setOnFinished(actionEvent -> {
                     root2.getChildren().remove(1);
+                    root2.getChildren().addAll(cestitka);
                 });
                 fejd.play();
 
@@ -731,6 +767,7 @@ public class HelloApplication extends Application {
                 activated[3] = false;
                 //nivo4.setDisable(true);
                 textFieldV.setText("");
+
                 return;
             }
             //if(!nivo5.isDisabled()) {
@@ -778,6 +815,7 @@ public class HelloApplication extends Application {
 
                 fejd.setOnFinished(actionEvent -> {
                     root2.getChildren().remove(1);
+                    root2.getChildren().addAll(cestitka);
                 });
                 fejd.play();
 
@@ -786,6 +824,7 @@ public class HelloApplication extends Application {
                 activated[4] = false;
                 //nivo5.setDisable(true);
                 textFieldV.setText("");
+//                root2.getChildren().addAll(cestitka);
                 return;
             }
             //if(!nivo6.isDisabled()) {
@@ -833,6 +872,7 @@ public class HelloApplication extends Application {
 
                 fejd.setOnFinished(actionEvent -> {
                     root2.getChildren().remove(1);
+                    root2.getChildren().addAll(cestitka);
                 });
                 fejd.play();
 
@@ -842,6 +882,7 @@ public class HelloApplication extends Application {
                 activated[5] = false;
                 //nivo6.setDisable(true);
                 textFieldV.setText("");
+//                root2.getChildren().addAll(cestitka);
                 return;
             }
             //if(!nivo7.isDisabled()) {
@@ -889,6 +930,7 @@ public class HelloApplication extends Application {
 
                 fejd.setOnFinished(actionEvent -> {
                     root3.getChildren().remove(1);
+                    root3.getChildren().addAll(cestitka);
                 });
                 fejd.play();
 
@@ -897,6 +939,7 @@ public class HelloApplication extends Application {
                 activated[6] = false;
                 //nivo7.setDisable(true);
                 textFieldV.setText("");
+//                root3.getChildren().addAll(cestitka);
                 return;
             }
             //if(!nivo8.isDisabled()) {
@@ -944,6 +987,7 @@ public class HelloApplication extends Application {
 
                 fejd.setOnFinished(actionEvent -> {
                     root3.getChildren().remove(1);
+                    root3.getChildren().addAll(cestitka);
                 });
                 fejd.play();
 
@@ -952,6 +996,7 @@ public class HelloApplication extends Application {
                 activated[7] = false;
                 //nivo8.setDisable(true);
                 textFieldV.setText("");
+//                root3.getChildren().addAll(cestitka);
                 return;
             }
             //if(!nivo9.isDisabled()) {
@@ -999,6 +1044,7 @@ public class HelloApplication extends Application {
 
                 fejd.setOnFinished(actionEvent -> {
                     root3.getChildren().remove(1);
+                    root3.getChildren().addAll(cestitka);
                 });
                 fejd.play();
 
@@ -1006,6 +1052,7 @@ public class HelloApplication extends Application {
                 dalje3.setDisable(false);
                 activated[8] = false;
                 textFieldV.setText("");
+//                root3.getChildren().addAll(cestitka);
                 //nivo9.setDisable(true);
             }
         });
@@ -1049,6 +1096,7 @@ public class HelloApplication extends Application {
         rb2.setToggleGroup(tg);
         rb3.setToggleGroup(tg);
         rb4.setToggleGroup(tg);
+
 
         Label lbl = new Label(pitanjaTest[redniBrojPitanja][0]);
         rootTest.getChildren().addAll(lbl,rb1,rb2,rb3,rb4);
@@ -1559,6 +1607,7 @@ public class HelloApplication extends Application {
                 redniBrojPitanja++;
             }
         });
+        rb1.setStyle("-fx-background-color: white");
 
         rb2.setOnAction(e -> {
             if(redniBrojPitanja == 11){
@@ -1576,6 +1625,7 @@ public class HelloApplication extends Application {
                 redniBrojPitanja++;
             }
         });
+        rb2.setStyle("-fx-background-color: white");
 
         rb3.setOnAction(e -> {
             if(redniBrojPitanja == 11){
@@ -1593,7 +1643,7 @@ public class HelloApplication extends Application {
                 redniBrojPitanja++;
             }
         });
-
+        rb3.setStyle("-fx-background-color: white");
         rb4.setOnAction(e -> {
             if(redniBrojPitanja == 11){
                 rezultat(brojTacnihOdgovora,taE,stage,poslednja);
@@ -1610,7 +1660,7 @@ public class HelloApplication extends Application {
                 redniBrojPitanja++;
             }
         });
-
+        rb4.setStyle("-fx-background-color: white");
         btnB.setOnAction(e -> {
             stage.setScene(scena1);
             stage.setTitle("Stage 1");
@@ -1622,18 +1672,27 @@ public class HelloApplication extends Application {
         });
 
         dalje1.setOnAction(e -> {
+            if(root1.getChildren().size()==2) {
+                root1.getChildren().remove(1);
+            }
             stage.setScene(scena2);
             stage.setTitle("Stage 2");
             stage.show();
         });
 
         dalje2.setOnAction(e -> {
+            if(root2.getChildren().size()==2) {
+                root2.getChildren().remove(1);
+            }
             stage.setScene(scena3);
             stage.setTitle("Stage 3");
             stage.show();
         });
 
         dalje3.setOnAction(e -> {
+            if(root3.getChildren().size()==2) {
+                root3.getChildren().remove(1);
+            }
             stage.setScene(scenaTest);
             stage.setTitle("Kviz");
             stage.show();

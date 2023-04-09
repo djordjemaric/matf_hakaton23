@@ -1,5 +1,6 @@
 package com.example.hakaton;
 
+import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +19,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 
@@ -392,8 +394,42 @@ public class HelloApplication extends Application {
 
             // pokreni animaciju
             if (activated[0]) {
-
                 root1.getChildren().remove(1);
+
+                Group group = new Group();
+
+                Rectangle okvir3 = new Rectangle();
+                okvir3.setHeight(200);
+                okvir3.setWidth(500);
+
+                Rectangle okvir2c = new Rectangle();
+                okvir2c.setHeight(200);
+                okvir2c.setWidth(500);
+
+                Image c = new Image("1.png");
+                ImagePattern paternc = new ImagePattern(c);
+                okvir2c.setFill(paternc);
+
+                group.getChildren().addAll(okvir3,okvir2c);
+                group.getTransforms().addAll(
+                        new Translate(-30, WINDOW_HEIGHT * 0.3)
+                );
+
+                root1.getChildren().addAll(group);
+
+                FadeTransition fejd = new FadeTransition(Duration.seconds(2),okvir2c);
+                fejd.setFromValue(1.0);
+                fejd.setToValue(0.0);
+
+                Image p = new Image("2.png");
+                ImagePattern pp = new ImagePattern(p);
+                okvir3.setFill(pp);
+
+
+                fejd.setOnFinished(actionEvent -> {
+                    root1.getChildren().remove(1);
+                });
+                fejd.play();
 
                 nivo1.setStyle("-fx-background-color: #4CAF50;");
                 nivo2.setDisable(false);
@@ -404,6 +440,42 @@ public class HelloApplication extends Application {
             //if(!nivo2.isDisabled()
             if (activated[1]) {
                 root1.getChildren().remove(1);
+
+                Group group = new Group();
+
+                Rectangle okvir3 = new Rectangle();
+                okvir3.setHeight(200);
+                okvir3.setWidth(500);
+
+                Rectangle okvir2c = new Rectangle();
+                okvir2c.setHeight(200);
+                okvir2c.setWidth(500);
+
+                Image c = new Image("1.png");
+                ImagePattern paternc = new ImagePattern(c);
+                okvir2c.setFill(paternc);
+
+                group.getChildren().addAll(okvir3,okvir2c);
+                group.getTransforms().addAll(
+                        new Translate(-30, WINDOW_HEIGHT * 0.3)
+                );
+
+                root1.getChildren().addAll(group);
+
+                FadeTransition fejd = new FadeTransition(Duration.seconds(2),okvir2c);
+                fejd.setFromValue(1.0);
+                fejd.setToValue(0.0);
+
+                Image p = new Image("4.png");
+                ImagePattern pp = new ImagePattern(p);
+                okvir3.setFill(pp);
+
+
+                fejd.setOnFinished(actionEvent -> {
+                    root1.getChildren().remove(1);
+                });
+                fejd.play();
+
                 nivo2.setStyle("-fx-background-color: #4CAF50;");
                 nivo3.setDisable(false);
                 activated[1] = false;
@@ -413,6 +485,42 @@ public class HelloApplication extends Application {
             //if(!nivo3.isDisabled()) {
             if (activated[2]) {
                 root1.getChildren().remove(1);
+
+                Group group = new Group();
+
+                Rectangle okvir3 = new Rectangle();
+                okvir3.setHeight(200);
+                okvir3.setWidth(500);
+
+                Rectangle okvir2c = new Rectangle();
+                okvir2c.setHeight(200);
+                okvir2c.setWidth(500);
+
+                Image c = new Image("1.png");
+                ImagePattern paternc = new ImagePattern(c);
+                okvir2c.setFill(paternc);
+
+                group.getChildren().addAll(okvir3,okvir2c);
+                group.getTransforms().addAll(
+                        new Translate(-30, WINDOW_HEIGHT * 0.3)
+                );
+
+                root1.getChildren().addAll(group);
+
+                FadeTransition fejd = new FadeTransition(Duration.seconds(2),okvir2c);
+                fejd.setFromValue(1.0);
+                fejd.setToValue(0.0);
+
+                Image p = new Image("6.png");
+                ImagePattern pp = new ImagePattern(p);
+                okvir3.setFill(pp);
+
+
+                fejd.setOnFinished(actionEvent -> {
+                    root1.getChildren().remove(1);
+                });
+                fejd.play();
+
                 nivo3.setStyle("-fx-background-color: #4CAF50;");
                 nivo4.setDisable(false);
                 dalje1.setDisable(false);
@@ -423,6 +531,42 @@ public class HelloApplication extends Application {
             //if(!nivo4.isDisabled()) {
             if (activated[3]) {
                 root2.getChildren().remove(1);
+
+                Group group = new Group();
+
+                Rectangle okvir3 = new Rectangle();
+                okvir3.setHeight(200);
+                okvir3.setWidth(500);
+
+                Rectangle okvir2c = new Rectangle();
+                okvir2c.setHeight(200);
+                okvir2c.setWidth(500);
+
+                Image c = new Image("1.png");
+                ImagePattern paternc = new ImagePattern(c);
+                okvir2c.setFill(paternc);
+
+                group.getChildren().addAll(okvir3,okvir2c);
+                group.getTransforms().addAll(
+                        new Translate(-30, WINDOW_HEIGHT * 0.3)
+                );
+
+                root2.getChildren().addAll(group);
+
+                FadeTransition fejd = new FadeTransition(Duration.seconds(2),okvir2c);
+                fejd.setFromValue(1.0);
+                fejd.setToValue(0.0);
+
+                Image p = new Image("8.png");
+                ImagePattern pp = new ImagePattern(p);
+                okvir3.setFill(pp);
+
+
+                fejd.setOnFinished(actionEvent -> {
+                    root2.getChildren().remove(1);
+                });
+                fejd.play();
+
                 nivo4.setStyle("-fx-background-color: #4CAF50;");
                 nivo5.setDisable(false);
                 activated[3] = false;
@@ -432,6 +576,42 @@ public class HelloApplication extends Application {
             //if(!nivo5.isDisabled()) {
             if (activated[4]) {
                 root2.getChildren().remove(1);
+
+                Group group = new Group();
+
+                Rectangle okvir3 = new Rectangle();
+                okvir3.setHeight(200);
+                okvir3.setWidth(500);
+
+                Rectangle okvir2c = new Rectangle();
+                okvir2c.setHeight(200);
+                okvir2c.setWidth(500);
+
+                Image c = new Image("1.png");
+                ImagePattern paternc = new ImagePattern(c);
+                okvir2c.setFill(paternc);
+
+                group.getChildren().addAll(okvir3,okvir2c);
+                group.getTransforms().addAll(
+                        new Translate(-30, WINDOW_HEIGHT * 0.3)
+                );
+
+                root2.getChildren().addAll(group);
+
+                FadeTransition fejd = new FadeTransition(Duration.seconds(2),okvir2c);
+                fejd.setFromValue(1.0);
+                fejd.setToValue(0.0);
+
+                Image p = new Image("10.png");
+                ImagePattern pp = new ImagePattern(p);
+                okvir3.setFill(pp);
+
+
+                fejd.setOnFinished(actionEvent -> {
+                    root2.getChildren().remove(1);
+                });
+                fejd.play();
+
                 nivo5.setStyle("-fx-background-color: #4CAF50;");
                 nivo6.setDisable(false);
                 activated[4] = false;
@@ -441,6 +621,42 @@ public class HelloApplication extends Application {
             //if(!nivo6.isDisabled()) {
             if (activated[5]) {
                 root2.getChildren().remove(1);
+
+                Group group = new Group();
+
+                Rectangle okvir3 = new Rectangle();
+                okvir3.setHeight(200);
+                okvir3.setWidth(500);
+
+                Rectangle okvir2c = new Rectangle();
+                okvir2c.setHeight(200);
+                okvir2c.setWidth(500);
+
+                Image c = new Image("1.png");
+                ImagePattern paternc = new ImagePattern(c);
+                okvir2c.setFill(paternc);
+
+                group.getChildren().addAll(okvir3,okvir2c);
+                group.getTransforms().addAll(
+                        new Translate(-30, WINDOW_HEIGHT * 0.3)
+                );
+
+                root2.getChildren().addAll(group);
+
+                FadeTransition fejd = new FadeTransition(Duration.seconds(2),okvir2c);
+                fejd.setFromValue(1.0);
+                fejd.setToValue(0.0);
+
+                Image p = new Image("12.png");
+                ImagePattern pp = new ImagePattern(p);
+                okvir3.setFill(pp);
+
+
+                fejd.setOnFinished(actionEvent -> {
+                    root2.getChildren().remove(1);
+                });
+                fejd.play();
+
                 nivo6.setStyle("-fx-background-color: #4CAF50;");
                 nivo7.setDisable(false);
                 dalje2.setDisable(false);
@@ -451,6 +667,42 @@ public class HelloApplication extends Application {
             //if(!nivo7.isDisabled()) {
             if (activated[6]) {
                 root3.getChildren().remove(1);
+
+                Group group = new Group();
+
+                Rectangle okvir3 = new Rectangle();
+                okvir3.setHeight(200);
+                okvir3.setWidth(500);
+
+                Rectangle okvir2c = new Rectangle();
+                okvir2c.setHeight(200);
+                okvir2c.setWidth(500);
+
+                Image c = new Image("1.png");
+                ImagePattern paternc = new ImagePattern(c);
+                okvir2c.setFill(paternc);
+
+                group.getChildren().addAll(okvir3,okvir2c);
+                group.getTransforms().addAll(
+                        new Translate(-30, WINDOW_HEIGHT * 0.3)
+                );
+
+                root3.getChildren().addAll(group);
+
+                FadeTransition fejd = new FadeTransition(Duration.seconds(2),okvir2c);
+                fejd.setFromValue(1.0);
+                fejd.setToValue(0.0);
+
+                Image p = new Image("14.png");
+                ImagePattern pp = new ImagePattern(p);
+                okvir3.setFill(pp);
+
+
+                fejd.setOnFinished(actionEvent -> {
+                    root3.getChildren().remove(1);
+                });
+                fejd.play();
+
                 nivo7.setStyle("-fx-background-color: #4CAF50;");
                 nivo8.setDisable(false);
                 activated[6] = false;
@@ -460,6 +712,42 @@ public class HelloApplication extends Application {
             //if(!nivo8.isDisabled()) {
             if (activated[7]) {
                 root3.getChildren().remove(1);
+
+                Group group = new Group();
+
+                Rectangle okvir3 = new Rectangle();
+                okvir3.setHeight(200);
+                okvir3.setWidth(500);
+
+                Rectangle okvir2c = new Rectangle();
+                okvir2c.setHeight(200);
+                okvir2c.setWidth(500);
+
+                Image c = new Image("1.png");
+                ImagePattern paternc = new ImagePattern(c);
+                okvir2c.setFill(paternc);
+
+                group.getChildren().addAll(okvir3,okvir2c);
+                group.getTransforms().addAll(
+                        new Translate(-30, WINDOW_HEIGHT * 0.3)
+                );
+
+                root3.getChildren().addAll(group);
+
+                FadeTransition fejd = new FadeTransition(Duration.seconds(2),okvir2c);
+                fejd.setFromValue(1.0);
+                fejd.setToValue(0.0);
+
+                Image p = new Image("16.png");
+                ImagePattern pp = new ImagePattern(p);
+                okvir3.setFill(pp);
+
+
+                fejd.setOnFinished(actionEvent -> {
+                    root3.getChildren().remove(1);
+                });
+                fejd.play();
+
                 nivo8.setStyle("-fx-background-color: #4CAF50;");
                 nivo9.setDisable(false);
                 activated[7] = false;

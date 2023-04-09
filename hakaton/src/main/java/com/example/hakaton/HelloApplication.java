@@ -17,6 +17,7 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -31,8 +32,12 @@ import java.util.Objects;
 
 
 public class HelloApplication extends Application {
-    private static final int WINDOW_WIDTH = 800;
-    private static final int WINDOW_HEIGHT = 597;
+    private static final int WINDOW_WIDTH = 1024;
+    private static final int WINDOW_HEIGHT = 768;
+    private static final int OKVIR_WIDTH = 700;
+    private static final int OKVIR_HEIGHT = 300;
+    private static final double BUTTON_RADIUS = 105.;
+
     Boolean[] activated = {false,false,false,false,false,false,false,false,false};
     String odgovori[] = {
             "SELECT * FROM skola;",
@@ -170,42 +175,42 @@ public class HelloApplication extends Application {
         dalje2.setDisable(true);
         dalje3.setDisable(true);
 
-        nivo1.setShape(new Circle(25));
+        nivo1.setShape(new Circle(BUTTON_RADIUS));
         nivo1.getTransforms().addAll(
                 new Translate(WINDOW_WIDTH * 0.12, 20)
         );
-        nivo2.setShape(new Circle(25));
+        nivo2.setShape(new Circle(BUTTON_RADIUS));
         nivo2.getTransforms().addAll(
                 new Translate(WINDOW_WIDTH * 0.42, 20)
         );
-        nivo3.setShape(new Circle(25));
+        nivo3.setShape(new Circle(BUTTON_RADIUS));
         nivo3.getTransforms().addAll(
                 new Translate(WINDOW_WIDTH * 0.72, 20)
         );
 
-        nivo4.setShape(new Circle(25));
+        nivo4.setShape(new Circle(BUTTON_RADIUS));
         nivo4.getTransforms().addAll(
                 new Translate(WINDOW_WIDTH * 0.12, 20)
         );
-        nivo5.setShape(new Circle(25));
+        nivo5.setShape(new Circle(BUTTON_RADIUS));
         nivo5.getTransforms().addAll(
                 new Translate(WINDOW_WIDTH * 0.42, 20)
         );
-        nivo6.setShape(new Circle(25));
+        nivo6.setShape(new Circle(BUTTON_RADIUS));
         nivo6.getTransforms().addAll(
                 new Translate(WINDOW_WIDTH * 0.72, 20)
         );
-        nivo7.setShape(new Circle(25));
+        nivo7.setShape(new Circle(BUTTON_RADIUS));
         nivo7.getTransforms().addAll(
                 new Translate(WINDOW_WIDTH * 0.12, 20)
         );
 
-        nivo8.setShape(new Circle(25));
+        nivo8.setShape(new Circle(BUTTON_RADIUS));
         nivo8.getTransforms().addAll(
                 new Translate(WINDOW_WIDTH * 0.42, 20)
         );
 
-        nivo9.setShape(new Circle(25));
+        nivo9.setShape(new Circle(BUTTON_RADIUS));
         nivo9.getTransforms().addAll(
                 new Translate(WINDOW_WIDTH * 0.72, 20)
         );
@@ -251,20 +256,23 @@ public class HelloApplication extends Application {
         textAreaT.setEditable(false);
         textAreaT.setPrefWidth(200);
         textAreaT.setPrefHeight(100);
+        textAreaT.setStyle("-fx-font-size: 17px");
         TextArea textAreaV = new TextArea("Izdvoji sve atribute o svim ucenicima u skoli. \n\nKlikni na probaj kada si spreman da proveris svoje resenje.");
         textAreaV.setWrapText(true);
         textAreaV.setEditable(false);
         textAreaV.setPrefWidth(200);
         textAreaV.setPrefHeight(100);
+        textAreaV.setStyle("-fx-font-size: 17px");
         TextField textFieldV = new TextField();
+        textFieldV.setStyle("-fx-font-size: 17px");
         Button btnT = new Button("Probaj");
         Button btnV = new Button("Prosledi resenje");
         VBox vbT = new VBox();
         VBox vbV = new VBox();
 
         Rectangle okvir = new Rectangle();
-        okvir.setHeight(200);
-        okvir.setWidth(500);
+        okvir.setHeight(OKVIR_HEIGHT);
+        okvir.setWidth(OKVIR_WIDTH);
 
         Image prvaT = new Image("2.png");
         ImagePattern paternPrvaT = new ImagePattern(prvaT);
@@ -276,8 +284,8 @@ public class HelloApplication extends Application {
         ImagePattern paternPrvaV = new ImagePattern(prvaV);
 
         Rectangle okvir2 = new Rectangle();
-        okvir2.setHeight(200);
-        okvir2.setWidth(500);
+        okvir2.setHeight(OKVIR_HEIGHT);
+        okvir2.setWidth(OKVIR_WIDTH);
 
         okvir2.setFill(paternPrvaV);
         vbV.getChildren().addAll(textAreaV,textFieldV,okvir2,btnV);
@@ -291,11 +299,11 @@ public class HelloApplication extends Application {
         );
 
         btnT.getTransforms().addAll(
-                new Translate(200, 0)
+                new Translate(WINDOW_WIDTH * 0.3, 10)
         );
 
         btnV.getTransforms().addAll(
-                new Translate(160, 0)
+                new Translate(WINDOW_WIDTH * 0.23, 10)
         );
 
         nivo1.setOnAction(e -> {
@@ -471,11 +479,12 @@ public class HelloApplication extends Application {
             if(!activated[8]){
                 textAreaT.setText("Vreme je da proverimo sta si naucio! \n" +
                         "Na sledecem slajdu se nalazi zadatak gde ces moci da proveris sve oblasti koje smo danas obradili");
+
                 textAreaV.setText("Napisi dva upita. \n" +
                         "Prvi - Izdvoji ime, prezime i adresu svih ucenika koji se prezivaju Mikic ili su \nrodjeni 2000. ili 2005. godine. Hint: koristi IN operator\n" +
                         "Drugi - Izdvoji ime, prezime i adresu svih decaka koji nisu rodjeni 2001.\n" +
                         "Napravi presek izmedju ova dva upita.\n");
-                okvir.setFill(null);
+                okvir.setFill(Color.TRANSPARENT);
                 root3.getChildren().addAll(vbT);
                 activated[8] = true;
             }else{
@@ -519,12 +528,12 @@ public class HelloApplication extends Application {
                 Group group = new Group();
 
                 Rectangle okvir3 = new Rectangle();
-                okvir3.setHeight(200);
-                okvir3.setWidth(500);
+                okvir3.setHeight(OKVIR_HEIGHT);
+                okvir3.setWidth(OKVIR_WIDTH);
 
                 Rectangle okvir2c = new Rectangle();
-                okvir2c.setHeight(200);
-                okvir2c.setWidth(500);
+                okvir2c.setHeight(OKVIR_HEIGHT);
+                okvir2c.setWidth(OKVIR_WIDTH);
 
                 Image c = new Image("1.png");
                 ImagePattern paternc = new ImagePattern(c);
@@ -574,12 +583,12 @@ public class HelloApplication extends Application {
                 Group group = new Group();
 
                 Rectangle okvir3 = new Rectangle();
-                okvir3.setHeight(200);
-                okvir3.setWidth(500);
+                okvir3.setHeight(OKVIR_HEIGHT);
+                okvir3.setWidth(OKVIR_WIDTH);
 
                 Rectangle okvir2c = new Rectangle();
-                okvir2c.setHeight(200);
-                okvir2c.setWidth(500);
+                okvir2c.setHeight(OKVIR_HEIGHT);
+                okvir2c.setWidth(OKVIR_WIDTH);
 
                 Image c = new Image("1.png");
                 ImagePattern paternc = new ImagePattern(c);
@@ -629,12 +638,12 @@ public class HelloApplication extends Application {
                 Group group = new Group();
 
                 Rectangle okvir3 = new Rectangle();
-                okvir3.setHeight(200);
-                okvir3.setWidth(500);
+                okvir3.setHeight(OKVIR_HEIGHT);
+                okvir3.setWidth(OKVIR_WIDTH);
 
                 Rectangle okvir2c = new Rectangle();
-                okvir2c.setHeight(200);
-                okvir2c.setWidth(500);
+                okvir2c.setHeight(OKVIR_HEIGHT);
+                okvir2c.setWidth(OKVIR_WIDTH);
 
                 Image c = new Image("1.png");
                 ImagePattern paternc = new ImagePattern(c);
@@ -685,12 +694,12 @@ public class HelloApplication extends Application {
                 Group group = new Group();
 
                 Rectangle okvir3 = new Rectangle();
-                okvir3.setHeight(200);
-                okvir3.setWidth(500);
+                okvir3.setHeight(OKVIR_HEIGHT);
+                okvir3.setWidth(OKVIR_WIDTH);
 
                 Rectangle okvir2c = new Rectangle();
-                okvir2c.setHeight(200);
-                okvir2c.setWidth(500);
+                okvir2c.setHeight(OKVIR_HEIGHT);
+                okvir2c.setWidth(OKVIR_WIDTH);
 
                 Image c = new Image("1.png");
                 ImagePattern paternc = new ImagePattern(c);
@@ -740,12 +749,12 @@ public class HelloApplication extends Application {
                 Group group = new Group();
 
                 Rectangle okvir3 = new Rectangle();
-                okvir3.setHeight(200);
-                okvir3.setWidth(500);
+                okvir3.setHeight(OKVIR_HEIGHT);
+                okvir3.setWidth(OKVIR_WIDTH);
 
                 Rectangle okvir2c = new Rectangle();
-                okvir2c.setHeight(200);
-                okvir2c.setWidth(500);
+                okvir2c.setHeight(OKVIR_HEIGHT);
+                okvir2c.setWidth(OKVIR_WIDTH);
 
                 Image c = new Image("1.png");
                 ImagePattern paternc = new ImagePattern(c);
@@ -795,12 +804,12 @@ public class HelloApplication extends Application {
                 Group group = new Group();
 
                 Rectangle okvir3 = new Rectangle();
-                okvir3.setHeight(200);
-                okvir3.setWidth(500);
+                okvir3.setHeight(OKVIR_HEIGHT);
+                okvir3.setWidth(OKVIR_WIDTH);
 
                 Rectangle okvir2c = new Rectangle();
-                okvir2c.setHeight(200);
-                okvir2c.setWidth(500);
+                okvir2c.setHeight(OKVIR_HEIGHT);
+                okvir2c.setWidth(OKVIR_WIDTH);
 
                 Image c = new Image("1.png");
                 ImagePattern paternc = new ImagePattern(c);
@@ -851,12 +860,12 @@ public class HelloApplication extends Application {
                 Group group = new Group();
 
                 Rectangle okvir3 = new Rectangle();
-                okvir3.setHeight(200);
-                okvir3.setWidth(500);
+                okvir3.setHeight(OKVIR_HEIGHT);
+                okvir3.setWidth(OKVIR_WIDTH);
 
                 Rectangle okvir2c = new Rectangle();
-                okvir2c.setHeight(200);
-                okvir2c.setWidth(500);
+                okvir2c.setHeight(OKVIR_HEIGHT);
+                okvir2c.setWidth(OKVIR_WIDTH);
 
                 Image c = new Image("1.png");
                 ImagePattern paternc = new ImagePattern(c);
@@ -906,12 +915,12 @@ public class HelloApplication extends Application {
                 Group group = new Group();
 
                 Rectangle okvir3 = new Rectangle();
-                okvir3.setHeight(200);
-                okvir3.setWidth(500);
+                okvir3.setHeight(OKVIR_HEIGHT);
+                okvir3.setWidth(OKVIR_WIDTH);
 
                 Rectangle okvir2c = new Rectangle();
-                okvir2c.setHeight(200);
-                okvir2c.setWidth(500);
+                okvir2c.setHeight(OKVIR_HEIGHT);
+                okvir2c.setWidth(OKVIR_WIDTH);
 
                 Image c = new Image("1.png");
                 ImagePattern paternc = new ImagePattern(c);
@@ -957,6 +966,42 @@ public class HelloApplication extends Application {
                     return;
                 }
                 root3.getChildren().remove(1);
+
+                Group group = new Group();
+
+                Rectangle okvir3 = new Rectangle();
+                okvir3.setHeight(OKVIR_HEIGHT);
+                okvir3.setWidth(OKVIR_WIDTH);
+
+                Rectangle okvir2c = new Rectangle();
+                okvir2c.setHeight(OKVIR_HEIGHT);
+                okvir2c.setWidth(OKVIR_WIDTH);
+
+                Image c = new Image("1.png");
+                ImagePattern paternc = new ImagePattern(c);
+                okvir2c.setFill(paternc);
+
+                group.getChildren().addAll(okvir3,okvir2c);
+                group.getTransforms().addAll(
+                        new Translate(-30, WINDOW_HEIGHT * 0.3)
+                );
+
+                root3.getChildren().addAll(group);
+
+                FadeTransition fejd = new FadeTransition(Duration.seconds(2),okvir2c);
+                fejd.setFromValue(1.0);
+                fejd.setToValue(0.0);
+
+                Image p = new Image("17.png");
+                ImagePattern pp = new ImagePattern(p);
+                okvir3.setFill(pp);
+
+
+                fejd.setOnFinished(actionEvent -> {
+                    root3.getChildren().remove(1);
+                });
+                fejd.play();
+
                 nivo9.setStyle("-fx-background-color: goldenrod;");
                 dalje3.setDisable(false);
                 activated[8] = false;
@@ -973,9 +1018,9 @@ public class HelloApplication extends Application {
                 "Tabela se sastoji od kolona koje oznacavaju osobine/atribute.\nSvaki red u tabeli cuva vrednosti tih atributa.\n" +
                 "\n" +
                 "Tabela koju cemo korisiti u nastavku opisuje ucenike u jednoj skoli i izgleda ovako:");
-        //taB.setStyle("-fx-text-alignment: center;");
+        taB.setStyle("-fx-font-size: 15px;");
         taB.getTransforms().addAll(
-                new Translate(115, 0)
+                new Translate(WINDOW_WIDTH * 0.17, WINDOW_HEIGHT * 0.3)
         );
         Text taE = new Text();
         //taE.setStyle("-fx-text-alignment: center;");
@@ -985,11 +1030,11 @@ public class HelloApplication extends Application {
         rootE.getChildren().addAll(taE,btnE);
 
         btnB.getTransforms().addAll(
-                new Translate(350, 0)
+                new Translate(WINDOW_WIDTH * 0.42, WINDOW_HEIGHT * 0.3)
         );
 
         btnE.getTransforms().addAll(
-                new Translate(350, 0)
+                new Translate(WINDOW_WIDTH * 0.42, WINDOW_HEIGHT * 0.3)
         );
 
         VBox rootTest = new VBox();
@@ -1039,12 +1084,12 @@ public class HelloApplication extends Application {
                     Group group = new Group();
 
                     Rectangle okvir3 = new Rectangle();
-                    okvir3.setHeight(200);
-                    okvir3.setWidth(500);
+                    okvir3.setHeight(OKVIR_HEIGHT);
+                    okvir3.setWidth(OKVIR_WIDTH);
 
                     Rectangle okvir2c = new Rectangle();
-                    okvir2c.setHeight(200);
-                    okvir2c.setWidth(500);
+                    okvir2c.setHeight(OKVIR_HEIGHT);
+                    okvir2c.setWidth(OKVIR_WIDTH);
 
                     Image c = new Image("1.png");
                     ImagePattern paternc = new ImagePattern(c);
@@ -1093,12 +1138,12 @@ public class HelloApplication extends Application {
                     Group group = new Group();
 
                     Rectangle okvir3 = new Rectangle();
-                    okvir3.setHeight(200);
-                    okvir3.setWidth(500);
+                    okvir3.setHeight(OKVIR_HEIGHT);
+                    okvir3.setWidth(OKVIR_WIDTH);
 
                     Rectangle okvir2c = new Rectangle();
-                    okvir2c.setHeight(200);
-                    okvir2c.setWidth(500);
+                    okvir2c.setHeight(OKVIR_HEIGHT);
+                    okvir2c.setWidth(OKVIR_WIDTH);
 
                     Image c = new Image("1.png");
                     ImagePattern paternc = new ImagePattern(c);
@@ -1147,12 +1192,12 @@ public class HelloApplication extends Application {
                     Group group = new Group();
 
                     Rectangle okvir3 = new Rectangle();
-                    okvir3.setHeight(200);
-                    okvir3.setWidth(500);
+                    okvir3.setHeight(OKVIR_HEIGHT);
+                    okvir3.setWidth(OKVIR_WIDTH);
 
                     Rectangle okvir2c = new Rectangle();
-                    okvir2c.setHeight(200);
-                    okvir2c.setWidth(500);
+                    okvir2c.setHeight(OKVIR_HEIGHT);
+                    okvir2c.setWidth(OKVIR_WIDTH);
 
                     Image c = new Image("1.png");
                     ImagePattern paternc = new ImagePattern(c);
@@ -1206,12 +1251,12 @@ public class HelloApplication extends Application {
                     Group group = new Group();
 
                     Rectangle okvir3 = new Rectangle();
-                    okvir3.setHeight(200);
-                    okvir3.setWidth(500);
+                    okvir3.setHeight(OKVIR_HEIGHT);
+                    okvir3.setWidth(OKVIR_WIDTH);
 
                     Rectangle okvir2c = new Rectangle();
-                    okvir2c.setHeight(200);
-                    okvir2c.setWidth(500);
+                    okvir2c.setHeight(OKVIR_HEIGHT);
+                    okvir2c.setWidth(OKVIR_WIDTH);
 
                     Image c = new Image("1.png");
                     ImagePattern paternc = new ImagePattern(c);
@@ -1260,12 +1305,12 @@ public class HelloApplication extends Application {
                     Group group = new Group();
 
                     Rectangle okvir3 = new Rectangle();
-                    okvir3.setHeight(200);
-                    okvir3.setWidth(500);
+                    okvir3.setHeight(OKVIR_HEIGHT);
+                    okvir3.setWidth(OKVIR_WIDTH);
 
                     Rectangle okvir2c = new Rectangle();
-                    okvir2c.setHeight(200);
-                    okvir2c.setWidth(500);
+                    okvir2c.setHeight(OKVIR_HEIGHT);
+                    okvir2c.setWidth(OKVIR_WIDTH);
 
                     Image c = new Image("1.png");
                     ImagePattern paternc = new ImagePattern(c);
@@ -1314,12 +1359,12 @@ public class HelloApplication extends Application {
                     Group group = new Group();
 
                     Rectangle okvir3 = new Rectangle();
-                    okvir3.setHeight(200);
-                    okvir3.setWidth(500);
+                    okvir3.setHeight(OKVIR_HEIGHT);
+                    okvir3.setWidth(OKVIR_WIDTH);
 
                     Rectangle okvir2c = new Rectangle();
-                    okvir2c.setHeight(200);
-                    okvir2c.setWidth(500);
+                    okvir2c.setHeight(OKVIR_HEIGHT);
+                    okvir2c.setWidth(OKVIR_WIDTH);
 
                     Image c = new Image("1.png");
                     ImagePattern paternc = new ImagePattern(c);
@@ -1373,12 +1418,12 @@ public class HelloApplication extends Application {
                     Group group = new Group();
 
                     Rectangle okvir3 = new Rectangle();
-                    okvir3.setHeight(200);
-                    okvir3.setWidth(500);
+                    okvir3.setHeight(OKVIR_HEIGHT);
+                    okvir3.setWidth(OKVIR_WIDTH);
 
                     Rectangle okvir2c = new Rectangle();
-                    okvir2c.setHeight(200);
-                    okvir2c.setWidth(500);
+                    okvir2c.setHeight(OKVIR_HEIGHT);
+                    okvir2c.setWidth(OKVIR_WIDTH);
 
                     Image c = new Image("1.png");
                     ImagePattern paternc = new ImagePattern(c);
@@ -1427,12 +1472,12 @@ public class HelloApplication extends Application {
                     Group group = new Group();
 
                     Rectangle okvir3 = new Rectangle();
-                    okvir3.setHeight(200);
-                    okvir3.setWidth(500);
+                    okvir3.setHeight(OKVIR_HEIGHT);
+                    okvir3.setWidth(OKVIR_WIDTH);
 
                     Rectangle okvir2c = new Rectangle();
-                    okvir2c.setHeight(200);
-                    okvir2c.setWidth(500);
+                    okvir2c.setHeight(OKVIR_HEIGHT);
+                    okvir2c.setWidth(OKVIR_WIDTH);
 
                     Image c = new Image("1.png");
                     ImagePattern paternc = new ImagePattern(c);

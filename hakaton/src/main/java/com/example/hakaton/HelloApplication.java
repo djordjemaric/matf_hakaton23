@@ -6,10 +6,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -29,6 +31,36 @@ public class HelloApplication extends Application {
     private static final int WINDOW_HEIGHT = 640;
     Boolean[] activated = {false,false,false,false,false,false,false,false,false};
     Boolean mozesNivo = true;
+    String odgovori[] = {"SELECT * FROM skola;", "SELECT prezime FROM skola;", "SELECT ime, adresa, telefon FROM skola;", "SELECT * FROM SKOLA where godina < 2003;",
+            "SELECT * FROM skola WHERE godina = 2003 OR pol='Z';", "SELECT * FROM skola WHERE prezime IN ('Mikic', 'Zikic', 'Janic');", "SELECT * FROM skola ORDER BY godina DESC;",
+            "SELECT * FROM skola WHERE pol = Z EXCEPT SELECT * FROM skola WHERE godina = 2003;",
+            "SELECT ime, prezime, adresa FROM skola WHERE prezime = 'Mikic' OR godina IN (2000, 2005) INTERSECT SELECT ime, prezime, adresa FROM skola WHERE pol = 'M' AND godina <> 2001;"};
+    Query q = new Query();
+    String[][] pitanja = {  {"1.","","","",""},
+            {"","","","",""},
+            {"","","","",""},
+            {"","","","",""},
+            {"","","","",""},
+            {"","","","",""},
+            {"","","","",""},
+            {"","","","",""},
+            {"","","","",""},
+            {"","","","",""},
+            {"","","","",""},
+            {"","","","",""},
+            {"","","","",""},
+            {"","","","",""},
+            {"","","","",""},
+            {"","","","",""},
+            {"","","","",""},
+            {"","","","",""},
+            {"","","","",""},
+            {"","","","",""},
+            {"","","","",""},
+            {"","","","",""},
+            {"","","","",""},
+            {"","","","",""},
+    };
     @Override
     public void start(Stage stage) throws IOException {
         HBox root1 = new HBox();
@@ -53,6 +85,10 @@ public class HelloApplication extends Application {
         Button nivo8 = new Button("8");
         Button nivo9 = new Button("9");
         Button dalje3 = new Button("Finish");
+
+        Image pozadinaSlika = new Image("slika.jpg");
+        BackgroundImage pozadina = new BackgroundImage(pozadinaSlika,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO,false,false,false,false));
+        Background b = new Background(pozadina);
 
         nivo2.setDisable(true);
         nivo3.setDisable(true);
@@ -394,6 +430,12 @@ public class HelloApplication extends Application {
 
             // pokreni animaciju
             if (activated[0]) {
+                String odgovor = textFieldV.getText();
+                if(q.compare(odgovor,odgovori[0])){
+                    System.out.println("NETACNO");
+                    return;
+                }
+
                 root1.getChildren().remove(1);
 
                 Group group = new Group();
@@ -439,6 +481,11 @@ public class HelloApplication extends Application {
             }
             //if(!nivo2.isDisabled()
             if (activated[1]) {
+                String odgovor = textFieldV.getText();
+                if(!q.compare(odgovor,odgovori[1])){
+                    System.out.println("NETACNO");
+                    return;
+                }
                 root1.getChildren().remove(1);
 
                 Group group = new Group();
@@ -484,6 +531,11 @@ public class HelloApplication extends Application {
             }
             //if(!nivo3.isDisabled()) {
             if (activated[2]) {
+                String odgovor = textFieldV.getText();
+                if(!q.compare(odgovor,odgovori[2])){
+                    System.out.println("NETACNO");
+                    return;
+                }
                 root1.getChildren().remove(1);
 
                 Group group = new Group();
@@ -530,6 +582,11 @@ public class HelloApplication extends Application {
             }
             //if(!nivo4.isDisabled()) {
             if (activated[3]) {
+                String odgovor = textFieldV.getText();
+                if(!q.compare(odgovor,odgovori[3])){
+                    System.out.println("NETACNO");
+                    return;
+                }
                 root2.getChildren().remove(1);
 
                 Group group = new Group();
@@ -575,6 +632,11 @@ public class HelloApplication extends Application {
             }
             //if(!nivo5.isDisabled()) {
             if (activated[4]) {
+                String odgovor = textFieldV.getText();
+                if(!q.compare(odgovor,odgovori[4])){
+                    System.out.println("NETACNO");
+                    return;
+                }
                 root2.getChildren().remove(1);
 
                 Group group = new Group();
@@ -620,6 +682,11 @@ public class HelloApplication extends Application {
             }
             //if(!nivo6.isDisabled()) {
             if (activated[5]) {
+                String odgovor = textFieldV.getText();
+                if(!q.compare(odgovor,odgovori[5])){
+                    System.out.println("NETACNO");
+                    return;
+                }
                 root2.getChildren().remove(1);
 
                 Group group = new Group();
@@ -666,6 +733,11 @@ public class HelloApplication extends Application {
             }
             //if(!nivo7.isDisabled()) {
             if (activated[6]) {
+                String odgovor = textFieldV.getText();
+                if(!q.compare(odgovor,odgovori[6])){
+                    System.out.println("NETACNO");
+                    return;
+                }
                 root3.getChildren().remove(1);
 
                 Group group = new Group();
@@ -711,6 +783,11 @@ public class HelloApplication extends Application {
             }
             //if(!nivo8.isDisabled()) {
             if (activated[7]) {
+                String odgovor = textFieldV.getText();
+                if(!q.compare(odgovor,odgovori[7])){
+                    System.out.println("NETACNO");
+                    return;
+                }
                 root3.getChildren().remove(1);
 
                 Group group = new Group();
@@ -756,6 +833,11 @@ public class HelloApplication extends Application {
             }
             //if(!nivo9.isDisabled()) {
             if (activated[8]) {
+                String odgovor = textFieldV.getText();
+                if(!q.compare(odgovor,odgovori[8])){
+                    System.out.println("NETACNO");
+                    return;
+                }
                 root3.getChildren().remove(1);
                 nivo9.setStyle("-fx-background-color: #4CAF50;");
                 dalje3.setDisable(false);
@@ -788,6 +870,22 @@ public class HelloApplication extends Application {
                 new Translate(350, 0)
         );
 
+        VBox rootTest = new VBox();
+
+        RadioButton rb1 = new RadioButton();
+        RadioButton rb2 = new RadioButton();
+        RadioButton rb3 = new RadioButton();
+        RadioButton rb4 = new RadioButton();
+
+        ToggleGroup tg = new ToggleGroup();
+        rb1.setToggleGroup(tg);
+        rb2.setToggleGroup(tg);
+        rb3.setToggleGroup(tg);
+        rb4.setToggleGroup(tg);
+
+        Label lbl = new Label("Pitanje1:");
+        rootTest.getChildren().addAll(lbl,rb1,rb2,rb3,rb4);
+
         Scene pocetna = new Scene(rootB,WINDOW_WIDTH, WINDOW_HEIGHT);
         pocetna.getStylesheets().addAll("style.css");
         Scene scena1 = new Scene(root1,WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -796,9 +894,17 @@ public class HelloApplication extends Application {
         scena2.getStylesheets().addAll("style.css");
         Scene scena3 = new Scene(root3,WINDOW_WIDTH, WINDOW_HEIGHT);
         scena3.getStylesheets().addAll("style.css");
+        Scene scenaTest = new Scene(rootTest,WINDOW_WIDTH, WINDOW_HEIGHT);
+        scenaTest.getStylesheets().addAll("style.css");
         Scene poslednja = new Scene(rootE,WINDOW_WIDTH, WINDOW_HEIGHT);
         poslednja.getStylesheets().addAll("style.css");
 
+        rootB.setBackground(b);
+        root1.setBackground(b);
+        root2.setBackground(b);
+        root3.setBackground(b);
+        rootTest.setBackground(b);
+        rootE.setBackground(b);
 
         stage.setScene(pocetna);
         stage.setTitle("Dobrodosli");
@@ -828,8 +934,8 @@ public class HelloApplication extends Application {
         });
 
         dalje3.setOnAction(e -> {
-            stage.setScene(poslednja);
-            stage.setTitle("Kraj");
+            stage.setScene(scenaTest);
+            stage.setTitle("Kviz");
             stage.show();
         });
 

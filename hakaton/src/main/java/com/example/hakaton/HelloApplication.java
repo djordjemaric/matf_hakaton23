@@ -646,7 +646,7 @@ public class HelloApplication extends Application {
                 activated[0] = false;
                 textFieldV.setText("");
 
-                a.show();
+                //a.show();
 
                 //nivo1.setDisable(true);
                 return;
@@ -706,7 +706,7 @@ public class HelloApplication extends Application {
                 textFieldV.setText("");
 //                root1.getChildren().addAll(cestitka);
                 //nivo2.setDisable(true);
-                a.show();
+                //a.show();
                 return;
             }
             //if(!nivo3.isDisabled()) {
@@ -765,7 +765,7 @@ public class HelloApplication extends Application {
                 //nivo3.setDisable(true);
                 textFieldV.setText("");
 //                root1.getChildren().addAll(cestitka);
-                a.show();
+                //a.show();
                 return;
             }
             //if(!nivo4.isDisabled()) {
@@ -822,7 +822,7 @@ public class HelloApplication extends Application {
                 activated[3] = false;
                 //nivo4.setDisable(true);
                 textFieldV.setText("");
-                a.show();
+                //a.show();
                 return;
             }
             //if(!nivo5.isDisabled()) {
@@ -880,7 +880,7 @@ public class HelloApplication extends Application {
                 //nivo5.setDisable(true);
                 textFieldV.setText("");
 //                root2.getChildren().addAll(cestitka);
-                a.show();
+                //a.show();
                 return;
             }
             //if(!nivo6.isDisabled()) {
@@ -939,7 +939,7 @@ public class HelloApplication extends Application {
                 //nivo6.setDisable(true);
                 textFieldV.setText("");
 //                root2.getChildren().addAll(cestitka);
-                a.show();
+                //a.show();
                 return;
             }
             //if(!nivo7.isDisabled()) {
@@ -996,7 +996,7 @@ public class HelloApplication extends Application {
                 activated[6] = false;
                 //nivo7.setDisable(true);
                 textFieldV.setText("");
-                a.show();
+                //a.show();
 //                root3.getChildren().addAll(cestitka);
                 return;
             }
@@ -1054,7 +1054,7 @@ public class HelloApplication extends Application {
                 activated[7] = false;
                 //nivo8.setDisable(true);
                 textFieldV.setText("");
-                a.show();
+                //a.show();
 //                root3.getChildren().addAll(cestitka);
                 return;
             }
@@ -1111,7 +1111,7 @@ public class HelloApplication extends Application {
                 dalje3.setDisable(false);
                 activated[8] = false;
                 textFieldV.setText("");
-                a.show();
+                //a.show();
 //                root3.getChildren().addAll(cestitka);
                 //nivo9.setDisable(true);
             }

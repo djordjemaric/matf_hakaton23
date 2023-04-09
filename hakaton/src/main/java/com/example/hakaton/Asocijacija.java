@@ -12,9 +12,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.w3c.dom.Text;
 
-public class Asocijacija extends Application {
-    @Override
-    public void start(Stage stage) throws Exception {
+public class Asocijacija extends Stage {
+
+    public Asocijacija() {
 
         String[][] odgovori = {
                 {"pera", "peric", "tijana", "profesor"},
@@ -149,19 +149,19 @@ public class Asocijacija extends Application {
             if(tfB.getText().toLowerCase().equals("matematika")) {
                 System.out.println("POGODJENO");
                 tfB.setDisable(true);
-                stage.close();
+//                stage.close();
+                close();
             }
         });
         vbB.getChildren().addAll(tfB, btnB);
         bot.getChildren().addAll(vbB);
 
         Scene scena = new Scene(root, 700, 400);
-        stage.setScene(scena);
-        stage.show();
+        setScene(scena);
+        setTitle("Asocijacija");
+//        stage.setScene(scena);
+//        stage.show();
 
     }
 
-    public static void main(String[] args) {
-        launch();
-    }
 }

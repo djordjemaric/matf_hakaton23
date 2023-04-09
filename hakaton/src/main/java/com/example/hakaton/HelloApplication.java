@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BackgroundRepeat;
@@ -19,6 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
@@ -38,6 +40,9 @@ public class HelloApplication extends Application {
     private static final double BUTTON_RADIUS = 105.;
 
     Boolean[] activated = {false,false,false,false,false,false,false,false,false};
+
+    Asocijacija a = new Asocijacija();
+
     String odgovori[] = {
             "SELECT * FROM skola;",
             "SELECT prezime FROM skola;",
@@ -172,10 +177,30 @@ public class HelloApplication extends Application {
         Button nivo9 = new Button("9");
         Button dalje3 = new Button("Finish");
 
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setOffsetX(5);
+        dropShadow.setOffsetY(5);
+        dropShadow.setColor(javafx.scene.paint.Color.BLACK);
+
+        nivo1.setEffect(dropShadow);
+        nivo2.setEffect(dropShadow);
+        nivo3.setEffect(dropShadow);
+        nivo4.setEffect(dropShadow);
+        nivo5.setEffect(dropShadow);
+        nivo6.setEffect(dropShadow);
+        nivo7.setEffect(dropShadow);
+        nivo8.setEffect(dropShadow);
+        nivo9.setEffect(dropShadow);
+        dalje1.setEffect(dropShadow);
+        dalje2.setEffect(dropShadow);
+        dalje3.setEffect(dropShadow);
+
         Text cestitka = new Text("Bravo, samo tako nastavi!!!");
         cestitka.getTransforms().addAll(new Translate(WINDOW_WIDTH*0.1,WINDOW_HEIGHT*0.4));
         cestitka.setFill(Color.WHITE);
         cestitka.setStyle("-fx-font-size: 30px; -fx-font-weight: bold");
+        cestitka.setFont(Font.font("Verdana", 30));
+        cestitka.setEffect(dropShadow);
 
         Image pozadinaSlika = new Image("img-01.png");
         BackgroundImage pozadina = new BackgroundImage(pozadinaSlika,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER,new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO,false,false,false,false));
@@ -275,17 +300,21 @@ public class HelloApplication extends Application {
         textAreaT.setPrefWidth(200);
         textAreaT.setPrefHeight(100);
         textAreaT.setStyle("-fx-font-size: 17px");
+        textAreaT.setFont(Font.font("Consolas", 30));
         TextArea textAreaV = new TextArea("Izdvoji sve atribute o svim ucenicima u skoli. \n\nKlikni na probaj kada si spreman da proveris svoje resenje.");
         textAreaV.setWrapText(true);
         textAreaV.setEditable(false);
         textAreaV.setPrefWidth(200);
         textAreaV.setPrefHeight(100);
         textAreaV.setStyle("-fx-font-size: 17px");
+        textAreaV.setFont(Font.font("Consolas", 30));
         TextField textFieldV = new TextField();
         textFieldV.setStyle("-fx-font-size: 17px");
         textFieldV.setPromptText("Unesite svoj upit...");
         Button btnT = new Button("Probaj");
         Button btnV = new Button("Prosledi resenje");
+        btnT.setEffect(dropShadow);
+        btnV.setEffect(dropShadow);
         VBox vbT = new VBox();
         VBox vbV = new VBox();
 
@@ -617,7 +646,7 @@ public class HelloApplication extends Application {
                 activated[0] = false;
                 textFieldV.setText("");
 
-
+                a.show();
 
                 //nivo1.setDisable(true);
                 return;
@@ -677,6 +706,7 @@ public class HelloApplication extends Application {
                 textFieldV.setText("");
 //                root1.getChildren().addAll(cestitka);
                 //nivo2.setDisable(true);
+                a.show();
                 return;
             }
             //if(!nivo3.isDisabled()) {
@@ -735,6 +765,7 @@ public class HelloApplication extends Application {
                 //nivo3.setDisable(true);
                 textFieldV.setText("");
 //                root1.getChildren().addAll(cestitka);
+                a.show();
                 return;
             }
             //if(!nivo4.isDisabled()) {
@@ -791,7 +822,7 @@ public class HelloApplication extends Application {
                 activated[3] = false;
                 //nivo4.setDisable(true);
                 textFieldV.setText("");
-
+                a.show();
                 return;
             }
             //if(!nivo5.isDisabled()) {
@@ -849,6 +880,7 @@ public class HelloApplication extends Application {
                 //nivo5.setDisable(true);
                 textFieldV.setText("");
 //                root2.getChildren().addAll(cestitka);
+                a.show();
                 return;
             }
             //if(!nivo6.isDisabled()) {
@@ -907,6 +939,7 @@ public class HelloApplication extends Application {
                 //nivo6.setDisable(true);
                 textFieldV.setText("");
 //                root2.getChildren().addAll(cestitka);
+                a.show();
                 return;
             }
             //if(!nivo7.isDisabled()) {
@@ -963,6 +996,7 @@ public class HelloApplication extends Application {
                 activated[6] = false;
                 //nivo7.setDisable(true);
                 textFieldV.setText("");
+                a.show();
 //                root3.getChildren().addAll(cestitka);
                 return;
             }
@@ -1020,6 +1054,7 @@ public class HelloApplication extends Application {
                 activated[7] = false;
                 //nivo8.setDisable(true);
                 textFieldV.setText("");
+                a.show();
 //                root3.getChildren().addAll(cestitka);
                 return;
             }
@@ -1076,6 +1111,7 @@ public class HelloApplication extends Application {
                 dalje3.setDisable(false);
                 activated[8] = false;
                 textFieldV.setText("");
+                a.show();
 //                root3.getChildren().addAll(cestitka);
                 //nivo9.setDisable(true);
             }
@@ -1097,6 +1133,10 @@ public class HelloApplication extends Application {
         //taE.setStyle("-fx-text-alignment: center;");
         Button btnB = new Button("Zapocni");
         Button btnE = new Button("Zavrsi");
+
+        btnB.setEffect(dropShadow);
+        btnE.setEffect(dropShadow);
+
         rootB.getChildren().addAll(taB,btnB);
         rootE.getChildren().addAll(taE,btnE);
 
@@ -1192,6 +1232,9 @@ public class HelloApplication extends Application {
                     nivo1.setStyle("-fx-background-color: goldenrod;");
                     nivo2.setDisable(false);
                     activated[0] = false;
+
+                    textFieldV.setText("");
+                    a.show();
                     //nivo1.setDisable(true);
                     return;
                 }
@@ -1247,6 +1290,9 @@ public class HelloApplication extends Application {
                     nivo2.setStyle("-fx-background-color: goldenrod;");
                     nivo3.setDisable(false);
                     activated[1] = false;
+
+                    textFieldV.setText("");
+                    a.show();
                     //nivo2.setDisable(true);
                     return;
                 }
@@ -1303,6 +1349,9 @@ public class HelloApplication extends Application {
                     nivo4.setDisable(false);
                     dalje1.setDisable(false);
                     activated[2] = false;
+
+                    textFieldV.setText("");
+                    a.show();
                     //nivo3.setDisable(true);
                     return;
                 }
@@ -1362,6 +1411,9 @@ public class HelloApplication extends Application {
                     nivo4.setStyle("-fx-background-color: goldenrod;");
                     nivo5.setDisable(false);
                     activated[3] = false;
+
+                    textFieldV.setText("");
+                    a.show();
                     //nivo4.setDisable(true);
                     return;
                 }
@@ -1417,6 +1469,9 @@ public class HelloApplication extends Application {
                     nivo5.setStyle("-fx-background-color: goldenrod;");
                     nivo6.setDisable(false);
                     activated[4] = false;
+
+                    textFieldV.setText("");
+                    a.show();
                     //nivo5.setDisable(true);
                     return;
                 }
@@ -1473,6 +1528,9 @@ public class HelloApplication extends Application {
                     nivo7.setDisable(false);
                     dalje2.setDisable(false);
                     activated[5] = false;
+
+                    textFieldV.setText("");
+                    a.show();
                     //nivo6.setDisable(true);
                     return;
                 }
@@ -1532,6 +1590,9 @@ public class HelloApplication extends Application {
                     nivo7.setStyle("-fx-background-color: goldenrod;");
                     nivo8.setDisable(false);
                     activated[6] = false;
+
+                    textFieldV.setText("");
+                    a.show();
                     //nivo7.setDisable(true);
                     return;
                 }
@@ -1587,6 +1648,9 @@ public class HelloApplication extends Application {
                     nivo8.setStyle("-fx-background-color: goldenrod;");
                     nivo9.setDisable(false);
                     activated[7] = false;
+
+                    textFieldV.setText("");
+                    a.show();
                     //nivo8.setDisable(true);
                     return;
                 }
@@ -1607,6 +1671,9 @@ public class HelloApplication extends Application {
                     activated[8] = false;
                     //nivo9.setDisable(true);
                     root3.getChildren().addAll(cestitka);
+
+                    textFieldV.setText("");
+                    a.show();
                 }
             }
         });
